@@ -24,6 +24,20 @@
     .btn-logout { background: transparent; border: 1px solid rgba(201,168,76,0.3); border-radius: 6px; padding: 7px 14px; color: var(--gold); font-family: 'Raleway', sans-serif; font-size: 12px; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; }
     .btn-logout:hover { background: rgba(201,168,76,0.1); }
 
+    /* DEADLINE BANNER */
+    .deadline-banner { background: var(--dark2); border-bottom: 1px solid rgba(201,168,76,0.15); padding: 12px 24px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .deadline-banner-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .dl-card { background: var(--dark3); border-radius: 10px; padding: 10px 16px; display: flex; flex-direction: column; gap: 4px; border: 1px solid rgba(201,168,76,0.1); min-width: 210px; }
+    .dl-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .dl-card-label { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+    .dl-badge { border-radius: 20px; padding: 2px 9px; font-size: 10px; font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
+    .dl-badge.open   { background: rgba(76,175,125,0.15);  color: var(--success); border: 1px solid rgba(76,175,125,0.3); }
+    .dl-badge.locked { background: rgba(224,85,85,0.15);   color: var(--error);   border: 1px solid rgba(224,85,85,0.3); }
+    .dl-badge.warn   { background: rgba(224,160,48,0.15);  color: var(--warning); border: 1px solid rgba(224,160,48,0.3); }
+    .dl-card-detail { font-size: 12px; color: var(--text); line-height: 1.5; }
+    .dl-card-sub    { font-size: 11px; color: var(--text-muted); }
+
+    /* TABS */
     .tabs { display: flex; border-bottom: 1px solid rgba(201,168,76,0.15); background: var(--dark2); padding: 0 24px; overflow-x: auto; }
     .tab { padding: 16px 20px; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
     .tab:hover { color: var(--gold-light); }
@@ -38,7 +52,7 @@
     .stat-card .num { font-family: 'Cinzel', serif; font-size: 32px; color: var(--gold); }
     .stat-card .label { font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
 
-    .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+    .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
     .filters select, .filters input { background: var(--dark2); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 9px 14px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 13px; outline: none; }
     .filters select option { background: var(--dark3); }
     .btn-filter { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 9px 20px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; }
@@ -51,25 +65,31 @@
     thead th { padding: 11px 14px; text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
     tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s; }
     tbody tr:hover { background: rgba(201,168,76,0.04); }
-    tbody td { padding: 11px 14px; color: var(--text); vertical-align: middle; }
+    tbody td { padding: 10px 14px; color: var(--text); vertical-align: middle; }
+
     .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
     .badge.present { background: rgba(76,175,125,0.15); color: var(--success); border: 1px solid rgba(76,175,125,0.3); }
-    .badge.absent { background: rgba(224,85,85,0.15); color: var(--error); border: 1px solid rgba(224,85,85,0.3); }
-    .badge.late { background: rgba(224,160,48,0.15); color: var(--warning); border: 1px solid rgba(224,160,48,0.3); }
+    .badge.absent  { background: rgba(224,85,85,0.15);  color: var(--error);   border: 1px solid rgba(224,85,85,0.3); }
+    .badge.late    { background: rgba(224,160,48,0.15); color: var(--warning); border: 1px solid rgba(224,160,48,0.3); }
     .badge-type { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 1px; }
-    .badge-type.school { background: rgba(100,160,255,0.12); color: #80b4ff; border: 1px solid rgba(100,160,255,0.25); }
+    .badge-type.school  { background: rgba(100,160,255,0.12); color: #80b4ff; border: 1px solid rgba(100,160,255,0.25); }
     .badge-type.private { background: rgba(180,100,255,0.12); color: #cc90ff; border: 1px solid rgba(180,100,255,0.25); }
+
+    /* DELETE ROW BUTTON */
+    .btn-del-row { background: transparent; border: 1px solid rgba(224,85,85,0.25); border-radius: 5px; padding: 4px 10px; color: var(--error); font-size: 11px; cursor: pointer; font-family: 'Raleway', sans-serif; transition: all 0.18s; white-space: nowrap; }
+    .btn-del-row:hover { background: rgba(224,85,85,0.12); border-color: rgba(224,85,85,0.55); }
+
     .empty-state { text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
     .empty-state span { font-size: 36px; display: block; margin-bottom: 12px; }
 
     /* MEMBER CARDS */
     .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 28px; }
-    .member-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.12); border-radius: 14px; padding: 20px; cursor: pointer; transition: all 0.22s; position: relative; }
+    .member-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.12); border-radius: 14px; padding: 20px; cursor: pointer; transition: all 0.22s; }
     .member-card:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
     .member-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
     .member-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 22px; color: var(--dark); font-weight: 700; flex-shrink: 0; }
     .member-info h4 { font-size: 15px; color: var(--text); font-weight: 600; }
-    .member-info p { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+    .member-info p  { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
     .member-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
     .member-stat { background: var(--dark3); border-radius: 8px; padding: 10px; text-align: center; }
     .member-stat .n { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold); }
@@ -89,204 +109,184 @@
     .btn-add:hover { opacity: 0.85; transform: translateY(-1px); }
     .btn-add:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .msg { margin-top: 14px; padding: 10px 14px; border-radius: 8px; font-size: 13px; display: none; }
-    .msg.error { background: rgba(224,85,85,0.12); border: 1px solid rgba(224,85,85,0.3); color: var(--error); display: block; }
+    .msg.error   { background: rgba(224,85,85,0.12);  border: 1px solid rgba(224,85,85,0.3);  color: var(--error);   display: block; }
     .msg.success { background: rgba(76,175,125,0.12); border: 1px solid rgba(76,175,125,0.3); color: var(--success); display: block; }
+
+    /* CUSTOM CONFIRM DIALOG */
+    .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500; display: none; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
+    .confirm-overlay.open { display: flex; }
+    .confirm-box { background: var(--dark2); border: 1px solid rgba(224,85,85,0.4); border-radius: 16px; padding: 36px 32px; max-width: 460px; width: 92%; box-shadow: 0 24px 60px rgba(0,0,0,0.7); animation: popIn 0.2s ease; }
+    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .confirm-icon  { font-size: 48px; text-align: center; display: block; margin-bottom: 14px; }
+    .confirm-title { font-family: 'Cinzel', serif; font-size: 17px; color: var(--error); text-align: center; margin-bottom: 14px; letter-spacing: 1px; }
+    .confirm-warning { background: rgba(224,85,85,0.07); border: 1px solid rgba(224,85,85,0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+    .confirm-warning strong { color: var(--text); }
+    .confirm-detail { background: var(--dark3); border-radius: 8px; padding: 12px 16px; margin-bottom: 22px; font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+    .confirm-detail span { color: var(--gold-light); font-weight: 600; }
+    .confirm-btns { display: flex; gap: 10px; }
+    .confirm-btns button { flex: 1; padding: 13px; border-radius: 8px; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; border: none; }
+    .btn-cancel-confirm  { background: var(--dark3); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.08) !important; }
+    .btn-cancel-confirm:hover { color: var(--text); }
+    .btn-confirm-delete  { background: linear-gradient(135deg, #7a1a1a, var(--error)); color: #fff; }
+    .btn-confirm-delete:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-confirm-delete:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     /* MEMBER DETAIL MODAL */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 200; display: none; overflow-y: auto; padding: 20px; backdrop-filter: blur(5px); }
     .modal-overlay.open { display: block; }
-    .modal { background: var(--dark2); border: 1px solid rgba(201,168,76,0.22); border-radius: 18px; max-width: 960px; margin: 0 auto; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
-
-    /* MODAL HEADER */
+    .modal { background: var(--dark2); border: 1px solid rgba(201,168,76,0.22); border-radius: 18px; max-width: 980px; margin: 0 auto; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
     .modal-header { background: linear-gradient(135deg, var(--dark3), #1e1e2c); padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(201,168,76,0.15); }
     .modal-header-left { display: flex; align-items: center; gap: 18px; }
-    .modal-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 28px; color: var(--dark); font-weight: 700; box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
+    .modal-avatar-lg { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 28px; color: var(--dark); font-weight: 700; box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
     .modal-name { font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold); }
     .modal-email { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
-    .modal-role { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 3px 12px; font-size: 11px; color: var(--gold-light); letter-spacing: 1px; margin-top: 6px; }
+    .modal-role-tag { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 3px 12px; font-size: 11px; color: var(--gold-light); letter-spacing: 1px; margin-top: 6px; }
     .btn-close { background: transparent; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 9px 18px; color: var(--text-muted); cursor: pointer; font-family: 'Raleway', sans-serif; font-size: 13px; transition: all 0.2s; }
     .btn-close:hover { border-color: rgba(201,168,76,0.4); color: var(--gold); }
-
     .modal-body { padding: 32px; }
-
-    /* MODAL SUMMARY STATS */
-    .modal-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 32px; }
-    .modal-stat { background: var(--dark3); border-radius: 12px; padding: 16px 12px; text-align: center; border: 1px solid rgba(201,168,76,0.06); }
-    .modal-stat .n { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold); line-height: 1.2; }
+    .modal-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 28px; }
+    .modal-stat { background: var(--dark3); border-radius: 12px; padding: 14px 10px; text-align: center; border: 1px solid rgba(201,168,76,0.06); }
+    .modal-stat .n { font-family: 'Cinzel', serif; font-size: 17px; color: var(--gold); line-height: 1.2; }
     .modal-stat .l { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; line-height: 1.4; }
     .modal-stat.highlight { border-color: rgba(201,168,76,0.2); background: rgba(201,168,76,0.06); }
     .modal-stat.danger .n { color: var(--error); }
-
-    /* MODAL SECTIONS */
-    .modal-section { margin-bottom: 28px; }
-    .modal-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .modal-section { margin-bottom: 24px; }
+    .modal-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,0.1); }
     .modal-section-header h4 { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold-light); }
     .modal-section-header .count { font-size: 12px; color: var(--text-muted); }
-
-    /* EDIT NAME */
-    .edit-name-row { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; }
-    .edit-name-row input { background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 9px 14px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; flex: 1; }
+    .edit-name-row { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+    .edit-name-row input { background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 9px 14px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; flex: 1; min-width: 140px; }
     .edit-name-row input:focus { border-color: var(--gold); }
-    .btn-save-name { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 9px 18px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-    .btn-modal-delete { background: transparent; border: 1px solid rgba(224,85,85,0.3); border-radius: 8px; padding: 9px 18px; color: var(--error); font-family: 'Raleway', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .btn-save-name   { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 9px 18px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    .btn-modal-delete { background: transparent; border: 1px solid rgba(224,85,85,0.3); border-radius: 8px; padding: 9px 18px; color: var(--error); font-family: 'Raleway', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .btn-modal-delete:hover { background: rgba(224,85,85,0.1); }
-
-    /* SUB TABS in modal */
-    .modal-sub-tabs { display: flex; gap: 4px; margin-bottom: 18px; flex-wrap: wrap; }
-    .modal-sub-tab { padding: 8px 16px; border-radius: 20px; font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px; cursor: pointer; border: 1px solid rgba(201,168,76,0.2); color: var(--text-muted); transition: all 0.2s; }
+    .modal-sub-tabs { display: flex; gap: 6px; margin-bottom: 18px; flex-wrap: wrap; }
+    .modal-sub-tab { padding: 7px 14px; border-radius: 20px; font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px; cursor: pointer; border: 1px solid rgba(201,168,76,0.2); color: var(--text-muted); transition: all 0.2s; }
     .modal-sub-tab.active { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold); }
-
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* MONTH BREAKDOWN TABLE */
-    .month-breakdown { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
-    .month-chip { background: var(--dark3); border-radius: 10px; padding: 12px 14px; border: 1px solid rgba(201,168,76,0.08); }
-    .month-chip .m-name { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .month-chip .m-val { font-family: 'Cinzel', serif; font-size: 16px; color: var(--gold); }
-    .month-chip .m-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
+    @media (max-width: 900px) { .modal-stats { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 700px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-      .modal-stats { grid-template-columns: 1fr 1fr 1fr; }
+      .form-grid  { grid-template-columns: 1fr; }
       nav { padding: 0 14px; }
       .modal-body { padding: 18px; }
       .modal-header { padding: 18px 20px; }
+      .deadline-banner { padding: 10px 14px; gap: 10px; }
     }
-    @media (max-width: 480px) {
-      .modal-stats { grid-template-columns: 1fr 1fr; }
-    }
+    @media (max-width: 500px) { .modal-stats { grid-template-columns: 1fr 1fr; } }
   </style>
 </head>
 <body>
 
-<!-- MEMBER DETAIL MODAL -->
+<!-- ═══════════════════════════════════════════
+     CUSTOM DELETE CONFIRMATION DIALOG
+═══════════════════════════════════════════ -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <span class="confirm-icon">🗑️</span>
+    <div class="confirm-title">Permanently Delete This Record?</div>
+    <div class="confirm-warning">
+      ⛔ <strong>This action cannot be undone.</strong><br>
+      Once deleted, this record is gone from the database forever and cannot be recovered.
+    </div>
+    <div class="confirm-detail" id="confirmDetail">—</div>
+    <div class="confirm-btns">
+      <button class="btn-cancel-confirm" onclick="cancelConfirm()">↩ Cancel</button>
+      <button class="btn-confirm-delete" id="confirmDeleteBtn" onclick="executeConfirm()">🗑️ Yes, Delete Forever</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MEMBER DETAIL MODAL
+═══════════════════════════════════════════ -->
 <div class="modal-overlay" id="memberModal">
   <div class="modal">
     <div class="modal-header">
       <div class="modal-header-left">
-        <div class="modal-avatar" id="modalAvatar">?</div>
+        <div class="modal-avatar-lg" id="modalAvatar">?</div>
         <div>
           <div class="modal-name" id="modalName">-</div>
           <div class="modal-email" id="modalEmail">-</div>
-          <div class="modal-role">MEMBER</div>
+          <div class="modal-role-tag">MEMBER</div>
         </div>
       </div>
       <button class="btn-close" onclick="closeModal()">✕ Close</button>
     </div>
-
     <div class="modal-body">
+
       <!-- SUMMARY STATS -->
       <div class="modal-stats">
-        <div class="modal-stat highlight">
-          <div class="n" id="ms_school_att">0</div>
-          <div class="l">School Sessions</div>
-        </div>
-        <div class="modal-stat highlight">
-          <div class="n" id="ms_prv_att">0</div>
-          <div class="l">Private Sessions</div>
-        </div>
-        <div class="modal-stat">
-          <div class="n" id="ms_total_att">0</div>
-          <div class="l">Total Sessions</div>
-        </div>
-        <div class="modal-stat highlight">
-          <div class="n" id="ms_school_pay">LKR 0</div>
-          <div class="l">School Payments</div>
-        </div>
-        <div class="modal-stat highlight">
-          <div class="n" id="ms_prv_pay">LKR 0</div>
-          <div class="l">Private Payments</div>
-        </div>
-        <div class="modal-stat danger">
-          <div class="n" id="ms_pending">LKR 0</div>
-          <div class="l">Total Pending</div>
-        </div>
+        <div class="modal-stat highlight"><div class="n" id="ms_school_att">0</div><div class="l">School Sessions</div></div>
+        <div class="modal-stat highlight"><div class="n" id="ms_prv_att">0</div><div class="l">Private Sessions</div></div>
+        <div class="modal-stat">          <div class="n" id="ms_total_att">0</div><div class="l">Total Sessions</div></div>
+        <div class="modal-stat highlight"><div class="n" id="ms_school_pay">LKR 0</div><div class="l">School Payments</div></div>
+        <div class="modal-stat highlight"><div class="n" id="ms_prv_pay">LKR 0</div><div class="l">Private Payments</div></div>
+        <div class="modal-stat danger">   <div class="n" id="ms_pending">LKR 0</div><div class="l">Total Pending</div></div>
       </div>
 
-      <!-- EDIT NAME / ACTIONS -->
+      <!-- EDIT NAME + DELETE MEMBER -->
       <div class="modal-section">
-        <div class="modal-section-header">
-          <h4>✏️ Edit Member Name</h4>
-        </div>
+        <div class="modal-section-header"><h4>✏️ Edit Member Name</h4></div>
         <div class="edit-name-row">
           <input type="text" id="editNameInput" placeholder="Full name" />
-          <button class="btn-save-name" onclick="saveMemberName()">Save Name</button>
-          <button class="btn-modal-delete" onclick="deleteMember()">🗑️ Delete</button>
+          <button class="btn-save-name"   onclick="saveMemberName()">💾 Save Name</button>
+          <button class="btn-modal-delete" onclick="confirmDeleteMember()">🗑️ Delete Member</button>
         </div>
         <div class="msg" id="editNameMsg"></div>
       </div>
 
-      <!-- RECORDS SUB-TABS -->
+      <!-- RECORD SUB-TABS -->
       <div class="modal-sub-tabs">
         <div class="modal-sub-tab active" onclick="switchModalTab('school-att')">🏫 School Attendance</div>
-        <div class="modal-sub-tab" onclick="switchModalTab('prv-att')">🏠 Private Attendance</div>
-        <div class="modal-sub-tab" onclick="switchModalTab('school-pay')">🏫 School Payments</div>
-        <div class="modal-sub-tab" onclick="switchModalTab('prv-pay')">🏠 Private Payments</div>
+        <div class="modal-sub-tab"        onclick="switchModalTab('prv-att')"   >🏠 Private Attendance</div>
+        <div class="modal-sub-tab"        onclick="switchModalTab('school-pay')">🏫 School Payments</div>
+        <div class="modal-sub-tab"        onclick="switchModalTab('prv-pay')"   >🏠 Private Payments</div>
       </div>
 
       <!-- SCHOOL ATTENDANCE -->
       <div class="tab-content active" id="modal-tab-school-att">
         <div class="modal-section">
-          <div class="modal-section-header">
-            <h4>🏫 School / Institute Attendance</h4>
-            <span class="count" id="schoolAttCount"></span>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Date</th><th>Status</th><th>School</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th></tr></thead>
-              <tbody id="modalSchoolAttBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
-            </table>
-          </div>
+          <div class="modal-section-header"><h4>🏫 School / Institute Attendance</h4><span class="count" id="schoolAttCount"></span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Date</th><th>Status</th><th>School</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th><th>Delete</th></tr></thead>
+            <tbody id="modalSchoolAttBody"><tr><td colspan="10" class="empty-state">Loading...</td></tr></tbody>
+          </table></div>
         </div>
       </div>
 
       <!-- PRIVATE ATTENDANCE -->
       <div class="tab-content" id="modal-tab-prv-att">
         <div class="modal-section">
-          <div class="modal-section-header">
-            <h4>🏠 Private Class Attendance</h4>
-            <span class="count" id="prvAttCount"></span>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Date</th><th>Status</th><th>Location</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th></tr></thead>
-              <tbody id="modalPrvAttBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
-            </table>
-          </div>
+          <div class="modal-section-header"><h4>🏠 Private Class Attendance</h4><span class="count" id="prvAttCount"></span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Date</th><th>Status</th><th>Location</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th><th>Delete</th></tr></thead>
+            <tbody id="modalPrvAttBody"><tr><td colspan="10" class="empty-state">Loading...</td></tr></tbody>
+          </table></div>
         </div>
       </div>
 
       <!-- SCHOOL PAYMENTS -->
       <div class="tab-content" id="modal-tab-school-pay">
         <div class="modal-section">
-          <div class="modal-section-header">
-            <h4>🏫 School / Institute Payments</h4>
-            <span class="count" id="schoolPayCount"></span>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Date</th><th>School</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th></tr></thead>
-              <tbody id="modalSchoolPayBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
-            </table>
-          </div>
+          <div class="modal-section-header"><h4>🏫 School / Institute Payments</h4><span class="count" id="schoolPayCount"></span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Date</th><th>School</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th><th>Delete</th></tr></thead>
+            <tbody id="modalSchoolPayBody"><tr><td colspan="10" class="empty-state">Loading...</td></tr></tbody>
+          </table></div>
         </div>
       </div>
 
       <!-- PRIVATE PAYMENTS -->
       <div class="tab-content" id="modal-tab-prv-pay">
         <div class="modal-section">
-          <div class="modal-section-header">
-            <h4>🏠 Private Class Payments</h4>
-            <span class="count" id="prvPayCount"></span>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Date</th><th>Location</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th></tr></thead>
-              <tbody id="modalPrvPayBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
-            </table>
-          </div>
+          <div class="modal-section-header"><h4>🏠 Private Class Payments</h4><span class="count" id="prvPayCount"></span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Date</th><th>Location</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th><th>Delete</th></tr></thead>
+            <tbody id="modalPrvPayBody"><tr><td colspan="10" class="empty-state">Loading...</td></tr></tbody>
+          </table></div>
         </div>
       </div>
 
@@ -294,7 +294,9 @@
   </div><!-- end modal -->
 </div><!-- end modal-overlay -->
 
-<!-- NAV -->
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
 <nav>
   <div class="nav-brand">
     <span>♔</span>
@@ -306,11 +308,37 @@
   <button class="btn-logout" onclick="handleLogout()">Sign Out</button>
 </nav>
 
+<!-- ═══════════════════════════════════════════
+     DEADLINE BANNER
+═══════════════════════════════════════════ -->
+<div class="deadline-banner">
+  <div class="deadline-banner-title">⏰ Current Deadlines</div>
+  <div class="dl-card" id="dlAttCard">
+    <div class="dl-card-top">
+      <span class="dl-card-label">📋 Attendance Window</span>
+      <span class="dl-badge" id="dlAttBadge">—</span>
+    </div>
+    <div class="dl-card-detail" id="dlAttDetail">Loading...</div>
+    <div class="dl-card-sub"    id="dlAttSub"></div>
+  </div>
+  <div class="dl-card" id="dlPayCard">
+    <div class="dl-card-top">
+      <span class="dl-card-label">💰 Payment Window</span>
+      <span class="dl-badge" id="dlPayBadge">—</span>
+    </div>
+    <div class="dl-card-detail" id="dlPayDetail">Loading...</div>
+    <div class="dl-card-sub"    id="dlPaySub"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TABS
+═══════════════════════════════════════════ -->
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('overview')">📊 Overview</div>
-  <div class="tab" onclick="switchTab('attendance')">📋 All Attendance</div>
-  <div class="tab" onclick="switchTab('payments')">💰 All Payments</div>
-  <div class="tab" onclick="switchTab('members')">👥 Members</div>
+  <div class="tab active" onclick="switchTab('overview')"  >📊 Overview</div>
+  <div class="tab"        onclick="switchTab('attendance')">📋 All Attendance</div>
+  <div class="tab"        onclick="switchTab('payments')"  >💰 All Payments</div>
+  <div class="tab"        onclick="switchTab('members')"   >👥 Members</div>
 </div>
 
 <main>
@@ -318,7 +346,7 @@
   <!-- OVERVIEW -->
   <div class="tab-content active" id="tab-overview">
     <div class="section-title">Dashboard Overview</div>
-    <div class="section-sub">Summary of all academy activity</div>
+    <div class="section-sub">Real-time summary of all academy activity</div>
     <div class="stats-grid">
       <div class="stat-card"><div class="num" id="statMembers">-</div><div class="label">Total Members</div></div>
       <div class="stat-card"><div class="num" id="statAtt">-</div><div class="label">Total Sessions</div></div>
@@ -327,28 +355,24 @@
     </div>
     <div class="records-card">
       <h3>📋 Recent Attendance (Last 10)</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>Status</th><th>School / Location</th><th>Lesson</th><th>Students</th><th>Role</th></tr></thead>
-          <tbody id="recentAttBody"><tr><td colspan="8" class="empty-state">Loading...</td></tr></tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>Status</th><th>School / Location</th><th>Lesson</th><th>Students</th><th>Role</th></tr></thead>
+        <tbody id="recentAttBody"><tr><td colspan="8" class="empty-state">Loading...</td></tr></tbody>
+      </table></div>
     </div>
     <div class="records-card">
       <h3>💰 Recent Payments (Last 10)</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>School / Location</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th></tr></thead>
-          <tbody id="recentPayBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>School / Location</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th></tr></thead>
+        <tbody id="recentPayBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
+      </table></div>
     </div>
   </div>
 
   <!-- ALL ATTENDANCE -->
   <div class="tab-content" id="tab-attendance">
     <div class="section-title">All Attendance Records</div>
-    <div class="section-sub">Filter and view all member attendance — school and private sessions</div>
+    <div class="section-sub">Filter records below — use 🗑️ Delete to permanently remove any row</div>
     <div class="filters">
       <input type="text" id="attFilterMember" placeholder="Filter by member name..." />
       <input type="date" id="attFilterDate" />
@@ -361,23 +385,21 @@
         <option value="school">🏫 School</option>
         <option value="private">🏠 Private</option>
       </select>
-      <button class="btn-filter" onclick="loadAllAttendance()">Filter</button>
+      <button class="btn-filter" onclick="loadAllAttendance()">Apply Filter</button>
     </div>
     <div class="records-card">
       <h3>Attendance Records <span id="attCount" style="font-size:12px;color:var(--text-muted);font-family:'Raleway',sans-serif;font-weight:400;"></span></h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>Status</th><th>School / Location</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th></tr></thead>
-          <tbody id="allAttBody"><tr><td colspan="11" class="empty-state"><span>📋</span>Loading...</td></tr></tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>Status</th><th>School / Location</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th><th>Delete</th></tr></thead>
+        <tbody id="allAttBody"><tr><td colspan="12" class="empty-state"><span>📋</span>Loading...</td></tr></tbody>
+      </table></div>
     </div>
   </div>
 
   <!-- ALL PAYMENTS -->
   <div class="tab-content" id="tab-payments">
     <div class="section-title">All Payment Records</div>
-    <div class="section-sub">Filter and view all member payments — school and private</div>
+    <div class="section-sub">Filter records below — use 🗑️ Delete to permanently remove any row</div>
     <div class="filters">
       <input type="text" id="payFilterMember" placeholder="Filter by member name..." />
       <select id="payFilterMonth">
@@ -392,23 +414,21 @@
         <option value="school">🏫 School</option>
         <option value="private">🏠 Private</option>
       </select>
-      <button class="btn-filter" onclick="loadAllPayments()">Filter</button>
+      <button class="btn-filter" onclick="loadAllPayments()">Apply Filter</button>
     </div>
     <div class="records-card">
       <h3>Payment Records <span id="payCount" style="font-size:12px;color:var(--text-muted);font-family:'Raleway',sans-serif;font-weight:400;"></span></h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>School / Location</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th></tr></thead>
-          <tbody id="allPayBody"><tr><td colspan="11" class="empty-state"><span>💰</span>Loading...</td></tr></tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Date</th><th>Member</th><th>Type</th><th>School / Location</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th><th>Delete</th></tr></thead>
+        <tbody id="allPayBody"><tr><td colspan="12" class="empty-state"><span>💰</span>Loading...</td></tr></tbody>
+      </table></div>
     </div>
   </div>
 
   <!-- MEMBERS -->
   <div class="tab-content" id="tab-members">
     <div class="section-title">Manage Members</div>
-    <div class="section-sub">Click any member card to view full breakdown of their attendance & payments</div>
+    <div class="section-sub">Add new members below, or open a member card to view details or delete them</div>
 
     <div class="form-card">
       <h3>➕ Add New Member</h3>
@@ -438,13 +458,15 @@
 
 </main>
 
+<!-- ═══════════════════════════════════════════
+     FIREBASE SCRIPT
+═══════════════════════════════════════════ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
   import { getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const ADMIN_EMAIL = "vimukthid2003@gmail.com";
-
   const firebaseConfig = {
     apiKey: "AIzaSyDAHdTrbNkmMh1kMPt_5ynOO90gLIyeE1M",
     authDomain: "king-s-square-chess-academy.firebaseapp.com",
@@ -453,172 +475,245 @@
     messagingSenderId: "1011218662349",
     appId: "1:1011218662349:web:1abd01e4e37ca1256d3a84"
   };
-
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const db = getFirestore(app);
+  const db   = getFirestore(app);
 
-  let allMembers = [];
-  let currentModalMember = null;
+  let allMembers = [], currentModalMember = null, currentModalUid = null;
+  let pendingDeleteFn = null;
 
-  // AUTH — only the designated admin email + role:admin allowed
+  // ─── CONFIRM DIALOG ───────────────────────────
+  window.cancelConfirm  = () => {
+    document.getElementById('confirmOverlay').classList.remove('open');
+    pendingDeleteFn = null;
+  };
+  window.executeConfirm = async () => {
+    if (!pendingDeleteFn) return;
+    const btn = document.getElementById('confirmDeleteBtn');
+    btn.disabled = true; btn.textContent = 'Deleting...';
+    await pendingDeleteFn();
+    btn.disabled = false; btn.textContent = '🗑️ Yes, Delete Forever';
+    document.getElementById('confirmOverlay').classList.remove('open');
+    pendingDeleteFn = null;
+  };
+  function showConfirm(detailHTML, onConfirm) {
+    document.getElementById('confirmDetail').innerHTML = detailHTML;
+    pendingDeleteFn = onConfirm;
+    document.getElementById('confirmOverlay').classList.add('open');
+  }
+
+  // ─── DEADLINE BANNER ──────────────────────────
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const today  = new Date();
+  const day    = today.getDate();
+  const cMonth = today.getMonth();
+  const pMonth = cMonth === 0 ? 11 : cMonth - 1;
+
+  (() => {
+    // Attendance
+    const attLocked = day > 5;
+    const ab = document.getElementById('dlAttBadge');
+    const ad = document.getElementById('dlAttDetail');
+    const as_ = document.getElementById('dlAttSub');
+    if (!attLocked) {
+      ab.className = 'dl-badge open'; ab.textContent = 'OPEN';
+      ad.innerHTML = `<strong>${MONTHS[pMonth]}</strong> &amp; <strong>${MONTHS[cMonth]}</strong> submissions accepted`;
+      as_.textContent = `Deadline: ${MONTHS[cMonth]} 5th — ${5-day} day${5-day===1?'':'s'} left`;
+    } else {
+      ab.className = 'dl-badge locked'; ab.textContent = 'PREV CLOSED';
+      ad.innerHTML = `Only <strong>${MONTHS[cMonth]}</strong> submissions accepted`;
+      as_.textContent = `${MONTHS[pMonth]} window closed (past 5th)`;
+    }
+    // Payment
+    const payLocked = day > 25;
+    const pb = document.getElementById('dlPayBadge');
+    const pd = document.getElementById('dlPayDetail');
+    const ps = document.getElementById('dlPaySub');
+    if (payLocked) {
+      pb.className = 'dl-badge locked'; pb.textContent = 'PREV CLOSED';
+      pd.innerHTML = `Only <strong>${MONTHS[cMonth]}</strong> payments accepted`;
+      ps.textContent = `${MONTHS[pMonth]} window closed (past 25th)`;
+    } else {
+      const daysLeft = 25 - day;
+      pb.className = daysLeft <= 3 ? 'dl-badge warn' : 'dl-badge open';
+      pb.textContent = daysLeft <= 3 ? 'CLOSING SOON' : 'OPEN';
+      pd.innerHTML = `<strong>${MONTHS[pMonth]}</strong> &amp; <strong>${MONTHS[cMonth]}</strong> payments accepted`;
+      ps.textContent = `Deadline: ${MONTHS[cMonth]} 25th — ${daysLeft} day${daysLeft===1?'':'s'} left`;
+    }
+  })();
+
+  // ─── AUTH ─────────────────────────────────────
   onAuthStateChanged(auth, async (user) => {
     if (!user) { window.location.href = 'index.html'; return; }
     if (user.email !== ADMIN_EMAIL) { window.location.href = 'dashboard.html'; return; }
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (!userDoc.exists() || userDoc.data().role !== 'admin') { window.location.href = 'dashboard.html'; return; }
-    loadOverview();
-    loadMembers();
+    const ud = await getDoc(doc(db, "users", user.uid));
+    if (!ud.exists() || ud.data().role !== 'admin') { window.location.href = 'dashboard.html'; return; }
+    loadOverview(); loadMembers();
   });
-
   window.handleLogout = async () => { await signOut(auth); window.location.href = 'index.html'; };
 
+  // ─── TAB SWITCHING ────────────────────────────
   window.switchTab = (tab) => {
     const tabs = ['overview','attendance','payments','members'];
     document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', tabs[i] === tab));
-    document.querySelectorAll('.tab-content:not(.modal .tab-content)').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('main > .tab-content').forEach(c => c.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.add('active');
     if (tab === 'attendance') loadAllAttendance();
-    if (tab === 'payments') loadAllPayments();
+    if (tab === 'payments')   loadAllPayments();
   };
 
-  // Render type badge
-  function typeBadge(type) {
-    return type === 'private'
+  // ─── HELPERS ──────────────────────────────────
+  function typeBadge(t) {
+    return t === 'private'
       ? `<span class="badge-type private">🏠 Private</span>`
       : `<span class="badge-type school">🏫 School</span>`;
   }
-  function locationLabel(r) {
-    return r.sessionType === 'private' ? (r.location || '-') : (r.school || '-');
-  }
+  function locLabel(r) { return r.sessionType === 'private' ? (r.location||'-') : (r.school||'-'); }
+  function esc(s) { return (s||'').replace(/'/g, "\\'"); }
 
+  // ─── OVERVIEW ────────────────────────────────
   async function loadOverview() {
     const [attSnap, paySnap, memSnap] = await Promise.all([
       getDocs(collection(db, "attendance")),
       getDocs(collection(db, "payments")),
       getDocs(collection(db, "users"))
     ]);
-    let memberCount = 0;
-    memSnap.forEach(d => { if (d.data().role !== 'admin') memberCount++; });
-    document.getElementById('statMembers').textContent = memberCount;
-    document.getElementById('statAtt').textContent = attSnap.size;
-    document.getElementById('statPay').textContent = paySnap.size;
-    let pending = 0;
-    paySnap.forEach(d => { pending += Number(d.data().pending || 0); });
-    document.getElementById('statPending').textContent = pending > 0 ? pending.toLocaleString() : '0';
+    let mc = 0; memSnap.forEach(d => { if (d.data().role !== 'admin') mc++; });
+    document.getElementById('statMembers').textContent = mc;
+    document.getElementById('statAtt').textContent     = attSnap.size;
+    document.getElementById('statPay').textContent     = paySnap.size;
+    let pending = 0; paySnap.forEach(d => { pending += Number(d.data().pending||0); });
+    document.getElementById('statPending').textContent = pending.toLocaleString();
 
-    const attRows = [];
-    attSnap.forEach(d => attRows.push({ id: d.id, ...d.data() }));
-    attRows.sort((a, b) => new Date(b.date) - new Date(a.date));
-    document.getElementById('recentAttBody').innerHTML = attRows.slice(0, 10).map(r => `<tr>
-      <td>${r.date||'-'}</td>
-      <td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
+    const aRows = []; attSnap.forEach(d => aRows.push({id:d.id,...d.data()}));
+    aRows.sort((a,b) => new Date(b.date)-new Date(a.date));
+    document.getElementById('recentAttBody').innerHTML = aRows.slice(0,10).map(r=>`<tr>
+      <td>${r.date||'-'}</td><td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
       <td>${typeBadge(r.sessionType)}</td>
       <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-      <td>${locationLabel(r)}</td>
-      <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
+      <td>${locLabel(r)}</td><td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
     </tr>`).join('') || '<tr><td colspan="8" class="empty-state"><span>📋</span>No records yet</td></tr>';
 
-    const payRows = [];
-    paySnap.forEach(d => payRows.push({ id: d.id, ...d.data() }));
-    payRows.sort((a, b) => new Date(b.date) - new Date(a.date));
-    document.getElementById('recentPayBody').innerHTML = payRows.slice(0, 10).map(r => `<tr>
-      <td>${r.date||'-'}</td>
-      <td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
-      <td>${typeBadge(r.sessionType)}</td>
-      <td>${locationLabel(r)}</td>
-      <td>${r.month||'-'}</td>
-      <td>LKR ${Number(r.amount||0).toLocaleString()}</td>
-      <td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
+    const pRows = []; paySnap.forEach(d => pRows.push({id:d.id,...d.data()}));
+    pRows.sort((a,b) => new Date(b.date)-new Date(a.date));
+    document.getElementById('recentPayBody').innerHTML = pRows.slice(0,10).map(r=>`<tr>
+      <td>${r.date||'-'}</td><td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
+      <td>${typeBadge(r.sessionType)}</td><td>${locLabel(r)}</td><td>${r.month||'-'}</td>
+      <td>LKR ${Number(r.amount||0).toLocaleString()}</td><td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
       <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
     </tr>`).join('') || '<tr><td colspan="9" class="empty-state"><span>💰</span>No records yet</td></tr>';
   }
 
+  // ─── ALL ATTENDANCE ───────────────────────────
   window.loadAllAttendance = async () => {
     const body = document.getElementById('allAttBody');
-    body.innerHTML = '<tr><td colspan="11" class="empty-state">Loading...</td></tr>';
-    const snap = await getDocs(collection(db, "attendance"));
-    let rows = []; snap.forEach(d => rows.push({ id: d.id, ...d.data() }));
-    rows.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const mf = document.getElementById('attFilterMember').value.toLowerCase();
-    const df = document.getElementById('attFilterDate').value;
-    const sf = document.getElementById('attFilterStatus').value;
-    const tf = document.getElementById('attFilterType').value;
-    const filtered = rows.filter(r => {
-      if (mf && !(r.memberName||'').toLowerCase().includes(mf)) return false;
-      if (df && r.date !== df) return false;
-      if (sf && r.status !== sf) return false;
-      if (tf && r.sessionType !== tf) return false;
+    body.innerHTML = '<tr><td colspan="12" class="empty-state">Loading...</td></tr>';
+    const snap = await getDocs(collection(db,"attendance"));
+    let rows=[]; snap.forEach(d=>rows.push({id:d.id,...d.data()}));
+    rows.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const mf=document.getElementById('attFilterMember').value.toLowerCase();
+    const df=document.getElementById('attFilterDate').value;
+    const sf=document.getElementById('attFilterStatus').value;
+    const tf=document.getElementById('attFilterType').value;
+    const filtered=rows.filter(r=>{
+      if(mf&&!(r.memberName||'').toLowerCase().includes(mf)) return false;
+      if(df&&r.date!==df) return false;
+      if(sf&&r.status!==sf) return false;
+      if(tf&&r.sessionType!==tf) return false;
       return true;
     });
-    document.getElementById('attCount').textContent = `(${filtered.length} records)`;
-    body.innerHTML = filtered.map(r => `<tr>
+    document.getElementById('attCount').textContent=`(${filtered.length} records)`;
+    body.innerHTML = filtered.map(r=>`<tr>
       <td>${r.date||'-'}</td>
       <td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
       <td>${typeBadge(r.sessionType)}</td>
       <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-      <td>${locationLabel(r)}</td>
+      <td>${locLabel(r)}</td>
       <td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
       <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
-      <td style="max-width:140px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
-    </tr>`).join('') || '<tr><td colspan="11" class="empty-state"><span>📋</span>No records found</td></tr>';
+      <td style="max-width:110px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
+      <td><button class="btn-del-row" onclick="deleteAttRow('${r.id}','${esc(r.memberName||r.memberEmail)}','${r.date||''}','${esc(locLabel(r))}')">🗑️ Delete</button></td>
+    </tr>`).join('') || '<tr><td colspan="12" class="empty-state"><span>📋</span>No records found</td></tr>';
   };
 
+  // ─── ALL PAYMENTS ─────────────────────────────
   window.loadAllPayments = async () => {
     const body = document.getElementById('allPayBody');
-    body.innerHTML = '<tr><td colspan="11" class="empty-state">Loading...</td></tr>';
-    const snap = await getDocs(collection(db, "payments"));
-    let rows = []; snap.forEach(d => rows.push({ id: d.id, ...d.data() }));
-    rows.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const mf = document.getElementById('payFilterMember').value.toLowerCase();
-    const mof = document.getElementById('payFilterMonth').value;
-    const tf = document.getElementById('payFilterType').value;
-    const filtered = rows.filter(r => {
-      if (mf && !(r.memberName||'').toLowerCase().includes(mf)) return false;
-      if (mof && r.month !== mof) return false;
-      if (tf && r.sessionType !== tf) return false;
+    body.innerHTML = '<tr><td colspan="12" class="empty-state">Loading...</td></tr>';
+    const snap = await getDocs(collection(db,"payments"));
+    let rows=[]; snap.forEach(d=>rows.push({id:d.id,...d.data()}));
+    rows.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const mf =document.getElementById('payFilterMember').value.toLowerCase();
+    const mof=document.getElementById('payFilterMonth').value;
+    const tf =document.getElementById('payFilterType').value;
+    const filtered=rows.filter(r=>{
+      if(mf &&!(r.memberName||'').toLowerCase().includes(mf)) return false;
+      if(mof&&r.month!==mof) return false;
+      if(tf &&r.sessionType!==tf) return false;
       return true;
     });
-    document.getElementById('payCount').textContent = `(${filtered.length} records)`;
-    body.innerHTML = filtered.map(r => `<tr>
+    document.getElementById('payCount').textContent=`(${filtered.length} records)`;
+    body.innerHTML = filtered.map(r=>`<tr>
       <td>${r.date||'-'}</td>
       <td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
       <td>${typeBadge(r.sessionType)}</td>
-      <td>${locationLabel(r)}</td>
+      <td>${locLabel(r)}</td>
       <td>${r.month||'-'}</td>
       <td><strong>LKR ${Number(r.amount||0).toLocaleString()}</strong></td>
       <td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
       <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
       <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
-      <td style="max-width:120px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
-    </tr>`).join('') || '<tr><td colspan="11" class="empty-state"><span>💰</span>No records found</td></tr>';
+      <td style="max-width:100px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
+      <td><button class="btn-del-row" onclick="deletePayRow('${r.id}','${esc(r.memberName||r.memberEmail)}','${r.date||''}','${r.month||''}','LKR ${Number(r.amount||0).toLocaleString()}')">🗑️ Delete</button></td>
+    </tr>`).join('') || '<tr><td colspan="12" class="empty-state"><span>💰</span>No records found</td></tr>';
   };
 
+  // ─── DELETE ROW FUNCTIONS ─────────────────────
+  window.deleteAttRow = (id, member, date, location) => {
+    showConfirm(
+      `<span>Member:</span> ${member}<br>
+       <span>Date:</span> ${date}<br>
+       <span>Location / School:</span> ${location}<br>
+       <span>Record type:</span> Attendance`,
+      async () => {
+        await deleteDoc(doc(db,"attendance",id));
+        loadAllAttendance(); loadOverview();
+        if (currentModalUid) openMember(currentModalUid);
+      }
+    );
+  };
+  window.deletePayRow = (id, member, date, month, amount) => {
+    showConfirm(
+      `<span>Member:</span> ${member}<br>
+       <span>Date:</span> ${date}<br>
+       <span>Month:</span> ${month}<br>
+       <span>Amount:</span> ${amount}<br>
+       <span>Record type:</span> Payment`,
+      async () => {
+        await deleteDoc(doc(db,"payments",id));
+        loadAllPayments(); loadOverview();
+        if (currentModalUid) openMember(currentModalUid);
+      }
+    );
+  };
+
+  // ─── LOAD MEMBERS ─────────────────────────────
   async function loadMembers() {
-    const [snap, attSnap, paySnap] = await Promise.all([
-      getDocs(collection(db, "users")),
-      getDocs(collection(db, "attendance")),
-      getDocs(collection(db, "payments"))
+    const [snap,attSnap,paySnap] = await Promise.all([
+      getDocs(collection(db,"users")),
+      getDocs(collection(db,"attendance")),
+      getDocs(collection(db,"payments"))
     ]);
-
-    const attMap = {}, payMap = {}, pendingMap = {}, totalMap = {};
-    attSnap.forEach(d => { const uid = d.data().uid; attMap[uid] = (attMap[uid]||0) + 1; });
-    paySnap.forEach(d => {
-      const { uid, amount, pending } = d.data();
-      payMap[uid] = (payMap[uid]||0) + 1;
-      totalMap[uid] = (totalMap[uid]||0) + Number(amount||0);
-      pendingMap[uid] = (pendingMap[uid]||0) + Number(pending||0);
-    });
-
-    allMembers = [];
-    snap.forEach(d => { if (d.data().role !== 'admin') allMembers.push({ id: d.id, ...d.data() }); });
-    allMembers.sort((a, b) => (a.name||'').localeCompare(b.name||''));
-
-    document.getElementById('memberCountLabel').textContent = `(${allMembers.length} members)`;
-    const grid = document.getElementById('memberGrid');
-    if (allMembers.length === 0) { grid.innerHTML = '<div style="color:var(--text-muted);padding:20px;">No members yet.</div>'; return; }
-
-    grid.innerHTML = allMembers.map(m => `
+    const attMap={}, payMap={}, pendingMap={};
+    attSnap.forEach(d=>{ const u=d.data().uid; attMap[u]=(attMap[u]||0)+1; });
+    paySnap.forEach(d=>{ const {uid,amount,pending}=d.data(); payMap[uid]=(payMap[uid]||0)+1; pendingMap[uid]=(pendingMap[uid]||0)+Number(pending||0); });
+    allMembers=[];
+    snap.forEach(d=>{ if(d.data().role!=='admin') allMembers.push({id:d.id,...d.data()}); });
+    allMembers.sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+    document.getElementById('memberCountLabel').textContent=`(${allMembers.length} members)`;
+    const grid=document.getElementById('memberGrid');
+    if(allMembers.length===0){grid.innerHTML='<div style="color:var(--text-muted);padding:20px;">No members yet.</div>';return;}
+    grid.innerHTML=allMembers.map(m=>`
       <div class="member-card" onclick="openMember('${m.id}')">
         <div class="member-card-top">
           <div class="member-avatar">${(m.name||m.email||'?')[0].toUpperCase()}</div>
@@ -630,105 +725,107 @@
         <div class="member-stats">
           <div class="member-stat"><div class="n">${attMap[m.id]||0}</div><div class="l">Sessions</div></div>
           <div class="member-stat"><div class="n">${payMap[m.id]||0}</div><div class="l">Payments</div></div>
-          <div class="member-stat"><div class="n" style="${(pendingMap[m.id]||0)>0?'color:var(--error)':'color:var(--success)'}">LKR ${(pendingMap[m.id]||0).toLocaleString()}</div><div class="l">Pending</div></div>
+          <div class="member-stat">
+            <div class="n" style="color:${(pendingMap[m.id]||0)>0?'var(--error)':'var(--success)'}">LKR ${(pendingMap[m.id]||0).toLocaleString()}</div>
+            <div class="l">Pending</div>
+          </div>
         </div>
-        <button class="btn-view" onclick="event.stopPropagation(); openMember('${m.id}')">View Full Details →</button>
+        <button class="btn-view" onclick="event.stopPropagation();openMember('${m.id}')">View Full Details →</button>
       </div>`).join('');
   }
 
+  // ─── OPEN MEMBER MODAL ────────────────────────
   window.openMember = async (uid) => {
-    const member = allMembers.find(m => m.id === uid);
+    const member = allMembers.find(m=>m.id===uid);
     if (!member) return;
-    currentModalMember = member;
-
-    document.getElementById('modalAvatar').textContent = (member.name||member.email||'?')[0].toUpperCase();
-    document.getElementById('modalName').textContent = member.name || '(No name set)';
-    document.getElementById('modalEmail').textContent = member.email || '';
-    document.getElementById('editNameInput').value = member.name || '';
-    document.getElementById('editNameMsg').className = 'msg';
-
-    // Reset modal tabs
+    currentModalMember = member; currentModalUid = uid;
+    document.getElementById('modalAvatar').textContent   = (member.name||member.email||'?')[0].toUpperCase();
+    document.getElementById('modalName').textContent     = member.name||'(No name set)';
+    document.getElementById('modalEmail').textContent    = member.email||'';
+    document.getElementById('editNameInput').value       = member.name||'';
+    document.getElementById('editNameMsg').className     = 'msg';
     switchModalTab('school-att');
 
-    // Load all records in parallel
-    const [attSnap, paySnap] = await Promise.all([
-      getDocs(query(collection(db, "attendance"), where("uid", "==", uid))),
-      getDocs(query(collection(db, "payments"), where("uid", "==", uid)))
+    const [attSnap,paySnap] = await Promise.all([
+      getDocs(query(collection(db,"attendance"),where("uid","==",uid))),
+      getDocs(query(collection(db,"payments"),  where("uid","==",uid)))
     ]);
 
-    const allAtt = []; attSnap.forEach(d => allAtt.push({ id: d.id, ...d.data() }));
-    allAtt.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const schoolAtt = allAtt.filter(r => r.sessionType === 'school' || !r.sessionType);
-    const prvAtt = allAtt.filter(r => r.sessionType === 'private');
+    const allAtt=[]; attSnap.forEach(d=>allAtt.push({id:d.id,...d.data()}));
+    allAtt.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const schoolAtt = allAtt.filter(r=>r.sessionType!=='private');
+    const prvAtt    = allAtt.filter(r=>r.sessionType==='private');
 
-    const allPay = []; paySnap.forEach(d => allPay.push({ id: d.id, ...d.data() }));
-    allPay.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const schoolPay = allPay.filter(r => r.sessionType === 'school' || !r.sessionType);
-    const prvPay = allPay.filter(r => r.sessionType === 'private');
+    const allPay=[]; paySnap.forEach(d=>allPay.push({id:d.id,...d.data()}));
+    allPay.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const schoolPay = allPay.filter(r=>r.sessionType!=='private');
+    const prvPay    = allPay.filter(r=>r.sessionType==='private');
 
-    // Totals
-    let schoolPayTotal = 0, prvPayTotal = 0, totalPending = 0;
-    schoolPay.forEach(r => { schoolPayTotal += Number(r.amount||0); totalPending += Number(r.pending||0); });
-    prvPay.forEach(r => { prvPayTotal += Number(r.amount||0); totalPending += Number(r.pending||0); });
+    let sPay=0,pPay=0,tp=0;
+    schoolPay.forEach(r=>{sPay+=Number(r.amount||0);tp+=Number(r.pending||0);});
+    prvPay.forEach(r   =>{pPay+=Number(r.amount||0);tp+=Number(r.pending||0);});
 
-    // Update summary stats
     document.getElementById('ms_school_att').textContent = schoolAtt.length;
-    document.getElementById('ms_prv_att').textContent = prvAtt.length;
-    document.getElementById('ms_total_att').textContent = allAtt.length;
-    document.getElementById('ms_school_pay').textContent = `LKR ${schoolPayTotal.toLocaleString()}`;
-    document.getElementById('ms_prv_pay').textContent = `LKR ${prvPayTotal.toLocaleString()}`;
-    document.getElementById('ms_pending').textContent = `LKR ${totalPending.toLocaleString()}`;
-
-    // Counts
+    document.getElementById('ms_prv_att').textContent    = prvAtt.length;
+    document.getElementById('ms_total_att').textContent  = allAtt.length;
+    document.getElementById('ms_school_pay').textContent = `LKR ${sPay.toLocaleString()}`;
+    document.getElementById('ms_prv_pay').textContent    = `LKR ${pPay.toLocaleString()}`;
+    document.getElementById('ms_pending').textContent    = `LKR ${tp.toLocaleString()}`;
     document.getElementById('schoolAttCount').textContent = `${schoolAtt.length} records`;
-    document.getElementById('prvAttCount').textContent = `${prvAtt.length} records`;
+    document.getElementById('prvAttCount').textContent    = `${prvAtt.length} records`;
     document.getElementById('schoolPayCount').textContent = `${schoolPay.length} records`;
-    document.getElementById('prvPayCount').textContent = `${prvPay.length} records`;
+    document.getElementById('prvPayCount').textContent    = `${prvPay.length} records`;
 
-    // School Attendance table
-    document.getElementById('modalSchoolAttBody').innerHTML = schoolAtt.length === 0
-      ? '<tr><td colspan="9" class="empty-state"><span>📋</span>No school attendance records</td></tr>'
-      : schoolAtt.map(r => `<tr>
+    const mn = esc(member.name||member.email);
+
+    // School Attendance
+    document.getElementById('modalSchoolAttBody').innerHTML = schoolAtt.length===0
+      ? '<tr><td colspan="10" class="empty-state"><span>📋</span>No school attendance records</td></tr>'
+      : schoolAtt.map(r=>`<tr>
           <td>${r.date||'-'}</td>
           <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
           <td>${r.school||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
           <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
-          <td style="max-width:120px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td style="max-width:100px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td><button class="btn-del-row" onclick="deleteAttRow('${r.id}','${mn}','${r.date||''}','${esc(r.school||'')}')">🗑️ Delete</button></td>
         </tr>`).join('');
 
-    // Private Attendance table
-    document.getElementById('modalPrvAttBody').innerHTML = prvAtt.length === 0
-      ? '<tr><td colspan="9" class="empty-state"><span>🏠</span>No private class records</td></tr>'
-      : prvAtt.map(r => `<tr>
+    // Private Attendance
+    document.getElementById('modalPrvAttBody').innerHTML = prvAtt.length===0
+      ? '<tr><td colspan="10" class="empty-state"><span>🏠</span>No private class records</td></tr>'
+      : prvAtt.map(r=>`<tr>
           <td>${r.date||'-'}</td>
           <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
           <td>${r.location||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
           <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
-          <td style="max-width:120px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td style="max-width:100px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td><button class="btn-del-row" onclick="deleteAttRow('${r.id}','${mn}','${r.date||''}','${esc(r.location||'')}')">🗑️ Delete</button></td>
         </tr>`).join('');
 
-    // School Payments table
-    document.getElementById('modalSchoolPayBody').innerHTML = schoolPay.length === 0
-      ? '<tr><td colspan="9" class="empty-state"><span>💰</span>No school payment records</td></tr>'
-      : schoolPay.map(r => `<tr>
+    // School Payments
+    document.getElementById('modalSchoolPayBody').innerHTML = schoolPay.length===0
+      ? '<tr><td colspan="10" class="empty-state"><span>💰</span>No school payment records</td></tr>'
+      : schoolPay.map(r=>`<tr>
           <td>${r.date||'-'}</td><td>${r.school||'-'}</td><td>${r.month||'-'}</td>
           <td><strong>LKR ${Number(r.amount||0).toLocaleString()}</strong></td>
           <td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
           <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
           <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
-          <td style="max-width:100px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td style="max-width:90px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td><button class="btn-del-row" onclick="deletePayRow('${r.id}','${mn}','${r.date||''}','${r.month||''}','LKR ${Number(r.amount||0).toLocaleString()}')">🗑️ Delete</button></td>
         </tr>`).join('');
 
-    // Private Payments table
-    document.getElementById('modalPrvPayBody').innerHTML = prvPay.length === 0
-      ? '<tr><td colspan="9" class="empty-state"><span>🏠</span>No private payment records</td></tr>'
-      : prvPay.map(r => `<tr>
+    // Private Payments
+    document.getElementById('modalPrvPayBody').innerHTML = prvPay.length===0
+      ? '<tr><td colspan="10" class="empty-state"><span>🏠</span>No private payment records</td></tr>'
+      : prvPay.map(r=>`<tr>
           <td>${r.date||'-'}</td><td>${r.location||'-'}</td><td>${r.month||'-'}</td>
           <td><strong>LKR ${Number(r.amount||0).toLocaleString()}</strong></td>
           <td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
           <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
           <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
-          <td style="max-width:100px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td style="max-width:90px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
+          <td><button class="btn-del-row" onclick="deletePayRow('${r.id}','${mn}','${r.date||''}','${r.month||''}','LKR ${Number(r.amount||0).toLocaleString()}')">🗑️ Delete</button></td>
         </tr>`).join('');
 
     document.getElementById('memberModal').classList.add('open');
@@ -736,80 +833,84 @@
   };
 
   window.switchModalTab = (tabName) => {
-    const tabNames = ['school-att','prv-att','school-pay','prv-pay'];
-    document.querySelectorAll('.modal-sub-tab').forEach((t, i) => t.classList.toggle('active', tabNames[i] === tabName));
-    document.querySelectorAll('.modal .tab-content').forEach(c => c.classList.remove('active'));
-    document.getElementById('modal-tab-' + tabName).classList.add('active');
+    const names = ['school-att','prv-att','school-pay','prv-pay'];
+    document.querySelectorAll('.modal-sub-tab').forEach((t,i)=>t.classList.toggle('active',names[i]===tabName));
+    document.querySelectorAll('.modal .tab-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById('modal-tab-'+tabName).classList.add('active');
   };
 
   window.closeModal = () => {
     document.getElementById('memberModal').classList.remove('open');
     document.body.style.overflow = '';
-    currentModalMember = null;
+    currentModalMember = null; currentModalUid = null;
   };
 
+  // ─── SAVE NAME ────────────────────────────────
   window.saveMemberName = async () => {
     if (!currentModalMember) return;
     const name = document.getElementById('editNameInput').value.trim();
-    const msg = document.getElementById('editNameMsg');
-    if (!name) { msg.className = 'msg error'; msg.textContent = 'Please enter a name.'; return; }
-    await updateDoc(doc(db, "users", currentModalMember.id), { name });
-    document.getElementById('modalName').textContent = name;
+    const msg  = document.getElementById('editNameMsg');
+    if (!name) { msg.className='msg error'; msg.textContent='Please enter a name.'; return; }
+    await updateDoc(doc(db,"users",currentModalMember.id),{name});
+    document.getElementById('modalName').textContent   = name;
     document.getElementById('modalAvatar').textContent = name[0].toUpperCase();
     currentModalMember.name = name;
-    msg.className = 'msg success'; msg.textContent = '✅ Name updated!';
+    msg.className='msg success'; msg.textContent='✅ Name updated!';
     loadMembers();
   };
 
-  window.deleteMember = async () => {
+  // ─── DELETE MEMBER ────────────────────────────
+  window.confirmDeleteMember = () => {
     if (!currentModalMember) return;
-    const confirmed = confirm(`Delete "${currentModalMember.name||currentModalMember.email}"?\n\nThis removes their profile. Attendance & payment records remain.\n\nAlso disable their Firebase Authentication account separately.`);
-    if (!confirmed) return;
-    await deleteDoc(doc(db, "users", currentModalMember.id));
-    closeModal(); loadMembers(); loadOverview();
-    alert('Profile deleted. Remember to also disable their account in Firebase Authentication > Users.');
+    const m = currentModalMember;
+    showConfirm(
+      `<span>Member:</span> ${m.name||'(No name)'}<br>
+       <span>Email:</span> ${m.email}<br>
+       <span>⚠️ Note:</span> Their attendance &amp; payment records stay in the database. Also remove their login separately in <strong>Firebase Authentication &rarr; Users</strong>.`,
+      async () => {
+        await deleteDoc(doc(db,"users",m.id));
+        closeModal(); loadMembers(); loadOverview();
+      }
+    );
   };
 
+  // ─── ADD MEMBER ───────────────────────────────
   window.addMember = async () => {
-    const name = document.getElementById('mem_name').value.trim();
-    const email = document.getElementById('mem_email').value.trim();
+    const name     = document.getElementById('mem_name').value.trim();
+    const email    = document.getElementById('mem_email').value.trim();
     const password = document.getElementById('mem_password').value;
     const btn = document.getElementById('addMemberBtn');
     const msg = document.getElementById('memberMsg');
-    msg.className = 'msg'; msg.textContent = '';
-
-    if (!name || !email || !password) { msg.className = 'msg error'; msg.textContent = 'Please fill in all three fields.'; return; }
-    if (password.length < 6) { msg.className = 'msg error'; msg.textContent = 'Password must be at least 6 characters.'; return; }
-
-    // Block admin email from being added as member
-    if (email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
-      msg.className = 'msg error'; msg.textContent = 'This email is reserved for the admin account.'; return;
-    }
-
-    const existing = allMembers.find(m => m.email === email);
-    if (existing) { msg.className = 'msg error'; msg.textContent = `This email is already registered to "${existing.name||existing.email}".`; return; }
-
-    btn.disabled = true; btn.textContent = 'Adding...';
+    msg.className='msg'; msg.textContent='';
+    if (!name||!email||!password) { msg.className='msg error'; msg.textContent='Please fill in all three fields.'; return; }
+    if (password.length<6)        { msg.className='msg error'; msg.textContent='Password must be at least 6 characters.'; return; }
+    if (email.toLowerCase()===ADMIN_EMAIL.toLowerCase()) { msg.className='msg error'; msg.textContent='This email is reserved for the admin account.'; return; }
+    const existing = allMembers.find(m=>m.email===email);
+    if (existing) { msg.className='msg error'; msg.textContent=`This email is already registered to "${existing.name||existing.email}".`; return; }
+    btn.disabled=true; btn.textContent='Adding...';
     try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, "users", cred.user.uid), { name, email, role: 'member', createdAt: serverTimestamp() });
-      msg.className = 'msg success'; msg.textContent = `✅ Member "${name}" added! They can now log in at index.html.`;
-      document.getElementById('mem_name').value = '';
-      document.getElementById('mem_email').value = '';
-      document.getElementById('mem_password').value = '';
+      const cred = await createUserWithEmailAndPassword(auth,email,password);
+      await setDoc(doc(db,"users",cred.user.uid),{name,email,role:'member',createdAt:serverTimestamp()});
+      msg.className='msg success'; msg.textContent=`✅ "${name}" added! They can now log in at index.html.`;
+      document.getElementById('mem_name').value='';
+      document.getElementById('mem_email').value='';
+      document.getElementById('mem_password').value='';
       loadMembers(); loadOverview();
-    } catch (e) {
-      msg.className = 'msg error';
-      msg.textContent = e.code === 'auth/email-already-in-use'
-        ? 'This email is already registered in Firebase. Remove it from Authentication first.'
-        : 'Error: ' + e.message;
+    } catch(e) {
+      msg.className='msg error';
+      msg.textContent = e.code==='auth/email-already-in-use'
+        ? 'This email already exists in Firebase Authentication. Remove it there first before re-adding.'
+        : 'Error: '+e.message;
     }
-    btn.disabled = false; btn.textContent = 'Add Member';
+    btn.disabled=false; btn.textContent='Add Member';
   };
 
-  // Close modal on backdrop click
-  document.getElementById('memberModal').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('memberModal')) closeModal();
+  // Backdrop clicks
+  document.getElementById('memberModal').addEventListener('click', e=>{
+    if(e.target===document.getElementById('memberModal')) closeModal();
+  });
+  document.getElementById('confirmOverlay').addEventListener('click', e=>{
+    if(e.target===document.getElementById('confirmOverlay')) cancelConfirm();
   });
 </script>
 </body>
