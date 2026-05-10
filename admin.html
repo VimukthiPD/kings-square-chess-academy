@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Panel — King's Square Chess Academy</title>
+  <title>Admin — King's Square Chess Academy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -16,13 +16,7 @@
     }
     body { font-family: 'Raleway', sans-serif; background: var(--dark); color: var(--text); min-height: 100vh; }
 
-    nav {
-      background: var(--dark2);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-      padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px; position: sticky; top: 0; z-index: 100;
-    }
+    nav { background: var(--dark2); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
     .nav-brand { display: flex; align-items: center; gap: 12px; }
     .nav-brand span { font-size: 28px; }
     .nav-brand h1 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold); letter-spacing: 1px; line-height: 1.2; }
@@ -36,30 +30,19 @@
     .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
 
     main { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold); margin-bottom: 6px; }
+    .section-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
 
-    /* STATS */
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
     .stat-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.15); border-radius: 12px; padding: 20px; text-align: center; }
     .stat-card .num { font-family: 'Cinzel', serif; font-size: 32px; color: var(--gold); }
     .stat-card .label { font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
 
-    .section-title { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold); margin-bottom: 6px; }
-    .section-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
-
-    /* FILTERS */
-    .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-    .filters select, .filters input {
-      background: var(--dark2); border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 8px; padding: 9px 14px; color: var(--text);
-      font-family: 'Raleway', sans-serif; font-size: 13px; outline: none;
-      transition: border-color 0.2s;
-    }
-    .filters select:focus, .filters input:focus { border-color: var(--gold); }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+    .filters select, .filters input { background: var(--dark2); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 9px 14px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 13px; outline: none; }
     .filters select option { background: var(--dark3); }
-    .btn-filter { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 9px 20px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; }
-    .btn-filter:hover { opacity: 0.85; }
+    .btn-filter { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 9px 20px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; }
 
-    /* TABLE */
     .records-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; overflow: hidden; margin-bottom: 28px; }
     .records-card h3 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold-light); padding: 18px 24px; border-bottom: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: space-between; }
     .table-wrap { overflow-x: auto; }
@@ -69,35 +52,76 @@
     tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s; }
     tbody tr:hover { background: rgba(201,168,76,0.04); }
     tbody td { padding: 11px 14px; color: var(--text); vertical-align: middle; }
-    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
     .badge.present { background: rgba(76,175,125,0.15); color: var(--success); border: 1px solid rgba(76,175,125,0.3); }
     .badge.absent { background: rgba(224,85,85,0.15); color: var(--error); border: 1px solid rgba(224,85,85,0.3); }
     .badge.late { background: rgba(224,160,48,0.15); color: var(--warning); border: 1px solid rgba(224,160,48,0.3); }
     .empty-state { text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
     .empty-state span { font-size: 36px; display: block; margin-bottom: 12px; }
 
-    /* ADD MEMBER */
+    /* MEMBER CARDS */
+    .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .member-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.12); border-radius: 12px; padding: 18px; cursor: pointer; transition: all 0.2s; position: relative; }
+    .member-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .member-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .member-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 20px; color: var(--dark); font-weight: 700; flex-shrink: 0; }
+    .member-info h4 { font-size: 15px; color: var(--text); font-weight: 600; }
+    .member-info p { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .member-stats { display: flex; gap: 12px; }
+    .member-stat { flex: 1; background: var(--dark3); border-radius: 8px; padding: 8px 10px; text-align: center; }
+    .member-stat .n { font-family: 'Cinzel', serif; font-size: 16px; color: var(--gold); }
+    .member-stat .l { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; }
+    .member-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .btn-view { flex: 1; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 7px; padding: 8px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; cursor: pointer; }
+    .btn-sm { background: transparent; border: 1px solid rgba(201,168,76,0.3); border-radius: 7px; padding: 8px 12px; color: var(--gold); font-size: 11px; cursor: pointer; font-family: 'Raleway', sans-serif; transition: all 0.2s; }
+    .btn-sm:hover { background: rgba(201,168,76,0.1); }
+    .btn-sm.danger { border-color: rgba(224,85,85,0.3); color: var(--error); }
+    .btn-sm.danger:hover { background: rgba(224,85,85,0.1); }
+
+    /* ADD MEMBER FORM */
     .form-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; padding: 28px; margin-bottom: 24px; }
     .form-card h3 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold-light); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201,168,76,0.1); }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
     .form-group input, .form-group select { background: var(--dark3); border: 1px solid rgba(201,168,76,0.15); border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--gold); }
-    .btn-add { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 11px 28px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+    .form-group input:focus { border-color: var(--gold); }
+    .btn-add { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 11px 28px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
     .btn-add:hover { opacity: 0.85; transform: translateY(-1px); }
     .btn-add:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .msg { margin-top: 14px; padding: 10px 14px; border-radius: 8px; font-size: 13px; display: none; }
     .msg.error { background: rgba(224,85,85,0.12); border: 1px solid rgba(224,85,85,0.3); color: var(--error); display: block; }
     .msg.success { background: rgba(76,175,125,0.12); border: 1px solid rgba(76,175,125,0.3); color: var(--success); display: block; }
 
-    /* MEMBER LIST */
-    .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
-    .member-card { background: var(--dark3); border: 1px solid rgba(201,168,76,0.1); border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; }
-    .member-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 18px; color: var(--dark); font-weight: 700; flex-shrink: 0; }
-    .member-info h4 { font-size: 14px; color: var(--text); font-weight: 600; }
-    .member-info p { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-    .member-info .role-badge { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 10px; font-size: 10px; background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid rgba(201,168,76,0.2); letter-spacing: 1px; }
+    /* MEMBER DETAIL MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; overflow-y: auto; padding: 20px; backdrop-filter: blur(4px); }
+    .modal-overlay.open { display: block; }
+    .modal { background: var(--dark2); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; max-width: 900px; margin: 0 auto; overflow: hidden; }
+    .modal-header { background: var(--dark3); padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .modal-header-left { display: flex; align-items: center; gap: 16px; }
+    .modal-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 24px; color: var(--dark); font-weight: 700; }
+    .modal-name { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold); }
+    .modal-email { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .btn-close { background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 16px; color: var(--text-muted); cursor: pointer; font-family: 'Raleway', sans-serif; font-size: 13px; transition: all 0.2s; }
+    .btn-close:hover { border-color: rgba(201,168,76,0.3); color: var(--gold); }
+    .modal-body { padding: 28px; }
+    .modal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+    .modal-stat { background: var(--dark3); border-radius: 10px; padding: 14px; text-align: center; }
+    .modal-stat .n { font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold); }
+    .modal-stat .l { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+    .modal-section { margin-bottom: 24px; }
+    .modal-section h4 { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold-light); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .modal-actions { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .btn-modal-edit { background: transparent; border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 9px 18px; color: var(--gold); font-family: 'Raleway', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .btn-modal-edit:hover { background: rgba(201,168,76,0.1); }
+    .btn-modal-delete { background: transparent; border: 1px solid rgba(224,85,85,0.3); border-radius: 8px; padding: 9px 18px; color: var(--error); font-family: 'Raleway', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .btn-modal-delete:hover { background: rgba(224,85,85,0.1); }
+
+    /* EDIT NAME INLINE */
+    .edit-name-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .edit-name-row input { background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; flex: 1; }
+    .edit-name-row input:focus { border-color: var(--gold); }
+    .btn-save-name { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 8px 16px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; cursor: pointer; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -105,11 +129,69 @@
     @media (max-width: 700px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .form-grid { grid-template-columns: 1fr; }
+      .modal-stats { grid-template-columns: 1fr 1fr; }
       nav { padding: 0 14px; }
     }
   </style>
 </head>
 <body>
+
+<!-- MEMBER DETAIL MODAL -->
+<div class="modal-overlay" id="memberModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-avatar" id="modalAvatar">?</div>
+        <div>
+          <div class="modal-name" id="modalName">-</div>
+          <div class="modal-email" id="modalEmail">-</div>
+        </div>
+      </div>
+      <button class="btn-close" onclick="closeModal()">✕ Close</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="n" id="ms_att">0</div><div class="l">Attendance Records</div></div>
+        <div class="modal-stat"><div class="n" id="ms_pay">0</div><div class="l">Payment Records</div></div>
+        <div class="modal-stat"><div class="n" id="ms_total">LKR 0</div><div class="l">Total Payments</div></div>
+        <div class="modal-stat"><div class="n" id="ms_pending" style="color:var(--error)">LKR 0</div><div class="l">Total Pending</div></div>
+      </div>
+
+      <div class="modal-section">
+        <h4>✏️ Edit Member Name</h4>
+        <div class="edit-name-row">
+          <input type="text" id="editNameInput" placeholder="Full name" />
+          <button class="btn-save-name" onclick="saveMemberName()">Save Name</button>
+        </div>
+        <div class="msg" id="editNameMsg"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-modal-delete" onclick="deleteMember()">🗑️ Delete Member Account</button>
+      </div>
+
+      <div class="modal-section">
+        <h4>📋 Attendance Records</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Date</th><th>Status</th><th>School</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th></tr></thead>
+            <tbody id="modalAttBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h4>💰 Payment Records</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Date</th><th>School</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th></tr></thead>
+            <tbody id="modalPayBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <nav>
   <div class="nav-brand">
@@ -124,8 +206,8 @@
 
 <div class="tabs">
   <div class="tab active" onclick="switchTab('overview')">📊 Overview</div>
-  <div class="tab" onclick="switchTab('attendance')">📋 Attendance</div>
-  <div class="tab" onclick="switchTab('payments')">💰 Payments</div>
+  <div class="tab" onclick="switchTab('attendance')">📋 All Attendance</div>
+  <div class="tab" onclick="switchTab('payments')">💰 All Payments</div>
   <div class="tab" onclick="switchTab('members')">👥 Members</div>
 </div>
 
@@ -139,9 +221,8 @@
       <div class="stat-card"><div class="num" id="statMembers">-</div><div class="label">Total Members</div></div>
       <div class="stat-card"><div class="num" id="statAtt">-</div><div class="label">Attendance Records</div></div>
       <div class="stat-card"><div class="num" id="statPay">-</div><div class="label">Payment Records</div></div>
-      <div class="stat-card"><div class="num" id="statPending">-</div><div class="label">Pending Payments</div></div>
+      <div class="stat-card"><div class="num" id="statPending">-</div><div class="label">Total Pending (LKR)</div></div>
     </div>
-
     <div class="records-card">
       <h3>📋 Recent Attendance (Last 10)</h3>
       <div class="table-wrap">
@@ -151,7 +232,6 @@
         </table>
       </div>
     </div>
-
     <div class="records-card">
       <h3>💰 Recent Payments (Last 10)</h3>
       <div class="table-wrap">
@@ -163,7 +243,7 @@
     </div>
   </div>
 
-  <!-- ATTENDANCE -->
+  <!-- ALL ATTENDANCE -->
   <div class="tab-content" id="tab-attendance">
     <div class="section-title">All Attendance Records</div>
     <div class="section-sub">Filter and view all member attendance</div>
@@ -177,17 +257,17 @@
       <button class="btn-filter" onclick="loadAllAttendance()">Filter</button>
     </div>
     <div class="records-card">
-      <h3>Attendance Records <span id="attCount" style="font-size:12px;color:var(--text-muted);font-family:'Raleway',sans-serif;"></span></h3>
+      <h3>Attendance Records <span id="attCount" style="font-size:12px;color:var(--text-muted);font-family:'Raleway',sans-serif;font-weight:400;"></span></h3>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Date</th><th>Member</th><th>Email</th><th>Status</th><th>School</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th></tr></thead>
-          <tbody id="allAttBody"><tr><td colspan="11" class="empty-state"><span>📋</span>Loading...</td></tr></tbody>
+          <thead><tr><th>Date</th><th>Member</th><th>Status</th><th>School</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Role</th><th>Notes</th></tr></thead>
+          <tbody id="allAttBody"><tr><td colspan="10" class="empty-state"><span>📋</span>Loading...</td></tr></tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- PAYMENTS -->
+  <!-- ALL PAYMENTS -->
   <div class="tab-content" id="tab-payments">
     <div class="section-title">All Payment Records</div>
     <div class="section-sub">Filter and view all member payments</div>
@@ -203,7 +283,7 @@
       <button class="btn-filter" onclick="loadAllPayments()">Filter</button>
     </div>
     <div class="records-card">
-      <h3>Payment Records <span id="payCount" style="font-size:12px;color:var(--text-muted);font-family:'Raleway',sans-serif;"></span></h3>
+      <h3>Payment Records <span id="payCount" style="font-size:12px;color:var(--text-muted);font-family:'Raleway',sans-serif;font-weight:400;"></span></h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Date</th><th>Member</th><th>School</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Notes</th></tr></thead>
@@ -216,7 +296,7 @@
   <!-- MEMBERS -->
   <div class="tab-content" id="tab-members">
     <div class="section-title">Manage Members</div>
-    <div class="section-sub">Add new members and view existing accounts</div>
+    <div class="section-sub">Click any member card to view full details, attendance & payment records</div>
 
     <div class="form-card">
       <h3>➕ Add New Member</h3>
@@ -238,7 +318,7 @@
       <div class="msg" id="memberMsg"></div>
     </div>
 
-    <div class="section-title" style="margin-bottom:16px;">Current Members</div>
+    <div class="section-title" style="margin-bottom:16px;">Current Members <span id="memberCountLabel" style="font-size:13px;color:var(--text-muted);font-family:'Raleway',sans-serif;font-weight:400;"></span></div>
     <div class="member-grid" id="memberGrid">
       <div style="color:var(--text-muted);font-size:14px;">Loading members...</div>
     </div>
@@ -249,7 +329,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, doc, getDoc, getDocs, setDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, query, where, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDAHdTrbNkmMh1kMPt_5ynOO90gLIyeE1M",
@@ -264,15 +344,13 @@
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  let allAttRecords = [];
-  let allPayRecords = [];
+  let allMembers = [];
+  let currentModalMember = null;
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) { window.location.href = 'index.html'; return; }
     const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (!userDoc.exists() || userDoc.data().role !== 'admin') {
-      window.location.href = 'dashboard.html'; return;
-    }
+    if (!userDoc.exists() || userDoc.data().role !== 'admin') { window.location.href = 'dashboard.html'; return; }
     loadOverview();
     loadMembers();
   });
@@ -294,142 +372,209 @@
       getDocs(collection(db, "payments")),
       getDocs(collection(db, "users"))
     ]);
-
-    document.getElementById('statMembers').textContent = memSnap.size;
+    // Count non-admin members
+    let memberCount = 0;
+    memSnap.forEach(d => { if (d.data().role !== 'admin') memberCount++; });
+    document.getElementById('statMembers').textContent = memberCount;
     document.getElementById('statAtt').textContent = attSnap.size;
     document.getElementById('statPay').textContent = paySnap.size;
-
     let pending = 0;
     paySnap.forEach(d => { pending += Number(d.data().pending || 0); });
-    document.getElementById('statPending').textContent = pending > 0 ? `LKR ${pending.toLocaleString()}` : '0';
+    document.getElementById('statPending').textContent = pending > 0 ? pending.toLocaleString() : '0';
 
-    // Recent attendance
     const attRows = [];
     attSnap.forEach(d => attRows.push({ id: d.id, ...d.data() }));
     attRows.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const recentAtt = attRows.slice(0, 10);
-    document.getElementById('recentAttBody').innerHTML = recentAtt.length === 0
-      ? '<tr><td colspan="7" class="empty-state"><span>📋</span>No records yet</td></tr>'
-      : recentAtt.map(r => `<tr>
-          <td>${r.date||'-'}</td>
-          <td><strong>${r.memberName||'-'}</strong></td>
-          <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-          <td>${r.school||'-'}</td>
-          <td>${r.lesson||'-'}</td>
-          <td>${r.students||'-'}</td>
-          <td>${r.jobrole||'-'}</td>
-        </tr>`).join('');
+    document.getElementById('recentAttBody').innerHTML = attRows.slice(0,10).map(r => `<tr>
+      <td>${r.date||'-'}</td><td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
+      <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
+      <td>${r.school||'-'}</td><td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
+    </tr>`).join('') || '<tr><td colspan="7" class="empty-state"><span>📋</span>No records yet</td></tr>';
 
-    // Recent payments
     const payRows = [];
     paySnap.forEach(d => payRows.push({ id: d.id, ...d.data() }));
     payRows.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const recentPay = payRows.slice(0, 10);
-    document.getElementById('recentPayBody').innerHTML = recentPay.length === 0
-      ? '<tr><td colspan="9" class="empty-state"><span>💰</span>No records yet</td></tr>'
-      : recentPay.map(r => `<tr>
-          <td>${r.date||'-'}</td>
-          <td><strong>${r.memberName||'-'}</strong></td>
-          <td>${r.school||'-'}</td>
-          <td>${r.month||'-'}</td>
-          <td>LKR ${Number(r.amount||0).toLocaleString()}</td>
-          <td>${r.method||'-'}</td>
-          <td>${r.receivedby||'-'}</td>
-          <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
-          <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View</a>`:'-'}</td>
-        </tr>`).join('');
+    document.getElementById('recentPayBody').innerHTML = payRows.slice(0,10).map(r => `<tr>
+      <td>${r.date||'-'}</td><td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
+      <td>${r.school||'-'}</td><td>${r.month||'-'}</td>
+      <td>LKR ${Number(r.amount||0).toLocaleString()}</td><td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
+      <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
+      <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View</a>`:'-'}</td>
+    </tr>`).join('') || '<tr><td colspan="9" class="empty-state"><span>💰</span>No records yet</td></tr>';
   }
 
   window.loadAllAttendance = async () => {
     const body = document.getElementById('allAttBody');
-    body.innerHTML = '<tr><td colspan="11" class="empty-state">Loading...</td></tr>';
+    body.innerHTML = '<tr><td colspan="10" class="empty-state">Loading...</td></tr>';
     const snap = await getDocs(collection(db, "attendance"));
-    allAttRecords = [];
-    snap.forEach(d => allAttRecords.push({ id: d.id, ...d.data() }));
-    allAttRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    const memberFilter = document.getElementById('attFilterMember').value.toLowerCase();
-    const dateFilter = document.getElementById('attFilterDate').value;
-    const statusFilter = document.getElementById('attFilterStatus').value;
-
-    let filtered = allAttRecords.filter(r => {
-      if (memberFilter && !(r.memberName||'').toLowerCase().includes(memberFilter)) return false;
-      if (dateFilter && r.date !== dateFilter) return false;
-      if (statusFilter && r.status !== statusFilter) return false;
+    let rows = []; snap.forEach(d => rows.push({ id: d.id, ...d.data() }));
+    rows.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const mf = document.getElementById('attFilterMember').value.toLowerCase();
+    const df = document.getElementById('attFilterDate').value;
+    const sf = document.getElementById('attFilterStatus').value;
+    const filtered = rows.filter(r => {
+      if (mf && !(r.memberName||'').toLowerCase().includes(mf)) return false;
+      if (df && r.date !== df) return false;
+      if (sf && r.status !== sf) return false;
       return true;
     });
-
     document.getElementById('attCount').textContent = `(${filtered.length} records)`;
-
-    body.innerHTML = filtered.length === 0
-      ? '<tr><td colspan="11" class="empty-state"><span>📋</span>No records found</td></tr>'
-      : filtered.map(r => `<tr>
-          <td>${r.date||'-'}</td>
-          <td><strong>${r.memberName||'-'}</strong></td>
-          <td style="color:var(--text-muted);font-size:12px">${r.memberEmail||'-'}</td>
-          <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-          <td>${r.school||'-'}</td>
-          <td>${r.arrival||'-'}</td>
-          <td>${r.departure||'-'}</td>
-          <td>${r.lesson||'-'}</td>
-          <td>${r.students||'-'}</td>
-          <td>${r.jobrole||'-'}</td>
-          <td style="max-width:150px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
-        </tr>`).join('');
+    body.innerHTML = filtered.map(r => `<tr>
+      <td>${r.date||'-'}</td><td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
+      <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
+      <td>${r.school||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
+      <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
+      <td style="max-width:140px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
+    </tr>`).join('') || '<tr><td colspan="10" class="empty-state"><span>📋</span>No records found</td></tr>';
   };
 
   window.loadAllPayments = async () => {
     const body = document.getElementById('allPayBody');
     body.innerHTML = '<tr><td colspan="10" class="empty-state">Loading...</td></tr>';
     const snap = await getDocs(collection(db, "payments"));
-    allPayRecords = [];
-    snap.forEach(d => allPayRecords.push({ id: d.id, ...d.data() }));
-    allPayRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    const memberFilter = document.getElementById('payFilterMember').value.toLowerCase();
-    const monthFilter = document.getElementById('payFilterMonth').value;
-
-    let filtered = allPayRecords.filter(r => {
-      if (memberFilter && !(r.memberName||'').toLowerCase().includes(memberFilter)) return false;
-      if (monthFilter && r.month !== monthFilter) return false;
+    let rows = []; snap.forEach(d => rows.push({ id: d.id, ...d.data() }));
+    rows.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const mf = document.getElementById('payFilterMember').value.toLowerCase();
+    const monthf = document.getElementById('payFilterMonth').value;
+    const filtered = rows.filter(r => {
+      if (mf && !(r.memberName||'').toLowerCase().includes(mf)) return false;
+      if (monthf && r.month !== monthf) return false;
       return true;
     });
-
     document.getElementById('payCount').textContent = `(${filtered.length} records)`;
-
-    body.innerHTML = filtered.length === 0
-      ? '<tr><td colspan="10" class="empty-state"><span>💰</span>No records found</td></tr>'
-      : filtered.map(r => `<tr>
-          <td>${r.date||'-'}</td>
-          <td><strong>${r.memberName||'-'}</strong></td>
-          <td>${r.school||'-'}</td>
-          <td>${r.month||'-'}</td>
-          <td>LKR ${Number(r.amount||0).toLocaleString()}</td>
-          <td>${r.method||'-'}</td>
-          <td>${r.receivedby||'-'}</td>
-          <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
-          <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
-          <td style="max-width:150px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
-        </tr>`).join('');
+    body.innerHTML = filtered.map(r => `<tr>
+      <td>${r.date||'-'}</td><td><strong>${r.memberName||r.memberEmail||'-'}</strong></td>
+      <td>${r.school||'-'}</td><td>${r.month||'-'}</td>
+      <td>LKR ${Number(r.amount||0).toLocaleString()}</td><td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
+      <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
+      <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
+      <td style="max-width:140px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
+    </tr>`).join('') || '<tr><td colspan="10" class="empty-state"><span>💰</span>No records found</td></tr>';
   };
 
   async function loadMembers() {
     const snap = await getDocs(collection(db, "users"));
+    const attSnap = await getDocs(collection(db, "attendance"));
+    const paySnap = await getDocs(collection(db, "payments"));
+
+    // Build maps
+    const attMap = {}, payMap = {}, totalMap = {}, pendingMap = {};
+    attSnap.forEach(d => { const uid = d.data().uid; attMap[uid] = (attMap[uid]||0) + 1; });
+    paySnap.forEach(d => {
+      const uid = d.data().uid;
+      payMap[uid] = (payMap[uid]||0) + 1;
+      totalMap[uid] = (totalMap[uid]||0) + Number(d.data().amount||0);
+      pendingMap[uid] = (pendingMap[uid]||0) + Number(d.data().pending||0);
+    });
+
+    allMembers = [];
+    snap.forEach(d => { if (d.data().role !== 'admin') allMembers.push({ id: d.id, ...d.data() }); });
+    allMembers.sort((a, b) => (a.name||'').localeCompare(b.name||''));
+
+    document.getElementById('memberCountLabel').textContent = `(${allMembers.length} members)`;
+
     const grid = document.getElementById('memberGrid');
-    if (snap.empty) { grid.innerHTML = '<div style="color:var(--text-muted)">No members yet.</div>'; return; }
-    const members = [];
-    snap.forEach(d => members.push({ id: d.id, ...d.data() }));
-    members.sort((a, b) => (a.name||'').localeCompare(b.name||''));
-    grid.innerHTML = members.map(m => `
-      <div class="member-card">
-        <div class="member-avatar">${(m.name||'?')[0].toUpperCase()}</div>
-        <div class="member-info">
-          <h4>${m.name||'Unknown'}</h4>
-          <p>${m.email||''}</p>
-          <span class="role-badge">${m.role||'member'}</span>
+    if (allMembers.length === 0) { grid.innerHTML = '<div style="color:var(--text-muted)">No members yet.</div>'; return; }
+
+    grid.innerHTML = allMembers.map(m => `
+      <div class="member-card" onclick="openMember('${m.id}')">
+        <div class="member-card-top">
+          <div class="member-avatar">${(m.name||m.email||'?')[0].toUpperCase()}</div>
+          <div class="member-info">
+            <h4>${m.name||'(No name set)'}</h4>
+            <p>${m.email||''}</p>
+          </div>
+        </div>
+        <div class="member-stats">
+          <div class="member-stat"><div class="n">${attMap[m.id]||0}</div><div class="l">Attendance</div></div>
+          <div class="member-stat"><div class="n">${payMap[m.id]||0}</div><div class="l">Payments</div></div>
+          <div class="member-stat"><div class="n" style="${(pendingMap[m.id]||0)>0?'color:var(--error)':''}">LKR ${(pendingMap[m.id]||0).toLocaleString()}</div><div class="l">Pending</div></div>
+        </div>
+        <div class="member-actions" onclick="event.stopPropagation()">
+          <button class="btn-view" onclick="openMember('${m.id}')">View Full Details →</button>
         </div>
       </div>`).join('');
   }
+
+  window.openMember = async (uid) => {
+    const member = allMembers.find(m => m.id === uid);
+    if (!member) return;
+    currentModalMember = member;
+
+    document.getElementById('modalAvatar').textContent = (member.name||member.email||'?')[0].toUpperCase();
+    document.getElementById('modalName').textContent = member.name || '(No name set)';
+    document.getElementById('modalEmail').textContent = member.email || '';
+    document.getElementById('editNameInput').value = member.name || '';
+    document.getElementById('editNameMsg').className = 'msg';
+
+    // Load attendance
+    const attSnap = await getDocs(query(collection(db, "attendance"), where("uid", "==", uid)));
+    const attRows = []; attSnap.forEach(d => attRows.push({ id: d.id, ...d.data() }));
+    attRows.sort((a, b) => new Date(b.date) - new Date(a.date));
+    document.getElementById('ms_att').textContent = attRows.length;
+    document.getElementById('modalAttBody').innerHTML = attRows.length === 0
+      ? '<tr><td colspan="9" class="empty-state"><span>📋</span>No attendance records</td></tr>'
+      : attRows.map(r => `<tr>
+          <td>${r.date||'-'}</td>
+          <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
+          <td>${r.school||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
+          <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
+          <td style="max-width:120px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
+        </tr>`).join('');
+
+    // Load payments
+    const paySnap = await getDocs(query(collection(db, "payments"), where("uid", "==", uid)));
+    const payRows = []; paySnap.forEach(d => payRows.push({ id: d.id, ...d.data() }));
+    payRows.sort((a, b) => new Date(b.date) - new Date(a.date));
+    let totalPaid = 0, totalPending = 0;
+    payRows.forEach(r => { totalPaid += Number(r.amount||0); totalPending += Number(r.pending||0); });
+    document.getElementById('ms_pay').textContent = payRows.length;
+    document.getElementById('ms_total').textContent = `LKR ${totalPaid.toLocaleString()}`;
+    document.getElementById('ms_pending').textContent = `LKR ${totalPending.toLocaleString()}`;
+    document.getElementById('modalPayBody').innerHTML = payRows.length === 0
+      ? '<tr><td colspan="9" class="empty-state"><span>💰</span>No payment records</td></tr>'
+      : payRows.map(r => `<tr>
+          <td>${r.date||'-'}</td><td>${r.school||'-'}</td><td>${r.month||'-'}</td>
+          <td><strong>LKR ${Number(r.amount||0).toLocaleString()}</strong></td>
+          <td>${r.method||'-'}</td><td>${r.receivedby||'-'}</td>
+          <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
+          <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
+          <td style="max-width:120px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
+        </tr>`).join('');
+
+    document.getElementById('memberModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeModal = () => {
+    document.getElementById('memberModal').classList.remove('open');
+    document.body.style.overflow = '';
+    currentModalMember = null;
+  };
+
+  window.saveMemberName = async () => {
+    if (!currentModalMember) return;
+    const name = document.getElementById('editNameInput').value.trim();
+    const msg = document.getElementById('editNameMsg');
+    if (!name) { msg.className = 'msg error'; msg.textContent = 'Please enter a name.'; return; }
+    await updateDoc(doc(db, "users", currentModalMember.id), { name });
+    document.getElementById('modalName').textContent = name;
+    document.getElementById('modalAvatar').textContent = name[0].toUpperCase();
+    currentModalMember.name = name;
+    msg.className = 'msg success'; msg.textContent = '✅ Name updated!';
+    loadMembers();
+  };
+
+  window.deleteMember = async () => {
+    if (!currentModalMember) return;
+    const confirmed = confirm(`Are you sure you want to delete "${currentModalMember.name||currentModalMember.email}"?\n\nThis will remove their profile from the database. Their attendance and payment records will remain.\n\nNote: You will also need to disable their login in Firebase Authentication.`);
+    if (!confirmed) return;
+    await deleteDoc(doc(db, "users", currentModalMember.id));
+    closeModal();
+    loadMembers();
+    loadOverview();
+    alert('Member profile deleted. Remember to also disable their account in Firebase Authentication > Users.');
+  };
 
   window.addMember = async () => {
     const name = document.getElementById('mem_name').value.trim();
@@ -439,11 +584,14 @@
     const msg = document.getElementById('memberMsg');
     msg.className = 'msg'; msg.textContent = '';
 
-    if (!name || !email || !password) { msg.className = 'msg error'; msg.textContent = 'Please fill in all fields.'; return; }
+    if (!name || !email || !password) { msg.className = 'msg error'; msg.textContent = 'Please fill in all three fields.'; return; }
     if (password.length < 6) { msg.className = 'msg error'; msg.textContent = 'Password must be at least 6 characters.'; return; }
 
-    btn.disabled = true; btn.textContent = 'Adding...';
+    // Check if email already used
+    const existing = allMembers.find(m => m.email === email);
+    if (existing) { msg.className = 'msg error'; msg.textContent = `This email is already registered to "${existing.name||existing.email}".`; return; }
 
+    btn.disabled = true; btn.textContent = 'Adding...';
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, "users", cred.user.uid), { name, email, role: 'member', createdAt: serverTimestamp() });
@@ -451,13 +599,18 @@
       document.getElementById('mem_name').value = '';
       document.getElementById('mem_email').value = '';
       document.getElementById('mem_password').value = '';
-      loadMembers();
+      loadMembers(); loadOverview();
     } catch (e) {
       msg.className = 'msg error';
-      msg.textContent = e.code === 'auth/email-already-in-use' ? 'This email is already registered.' : 'Error adding member. Please try again.';
+      msg.textContent = e.code === 'auth/email-already-in-use' ? 'This email is already registered in the system.' : 'Error: ' + e.message;
     }
     btn.disabled = false; btn.textContent = 'Add Member';
   };
+
+  // Close modal on overlay click
+  document.getElementById('memberModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('memberModal')) closeModal();
+  });
 </script>
 </body>
 </html>
