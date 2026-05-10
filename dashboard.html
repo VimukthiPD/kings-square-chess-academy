@@ -9,34 +9,24 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --gold-dark: #8a6f2e;
-      --dark: #0a0a0f;
-      --dark2: #12121a;
-      --dark3: #1a1a26;
-      --dark4: #222233;
-      --text: #e8e8f0;
-      --text-muted: #8888aa;
-      --error: #e05555;
-      --success: #4caf7d;
-      --warning: #e0a030;
+      --gold: #c9a84c; --gold-light: #e8c97a; --gold-dark: #8a6f2e;
+      --dark: #0a0a0f; --dark2: #12121a; --dark3: #1a1a26; --dark4: #222233;
+      --text: #e8e8f0; --text-muted: #8888aa;
+      --error: #e05555; --success: #4caf7d; --warning: #e0a030;
     }
     body { font-family: 'Raleway', sans-serif; background: var(--dark); color: var(--text); min-height: 100vh; }
 
-    /* NAV */
-    nav {
-      background: var(--dark2);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+    .name-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 999; backdrop-filter: blur(6px); }
+    .name-box { background: var(--dark2); border: 1px solid rgba(201,168,76,0.3); border-radius: 16px; padding: 40px; max-width: 400px; width: 90%; text-align: center; }
+    .name-box span { font-size: 48px; display: block; margin-bottom: 12px; }
+    .name-box h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 18px; margin-bottom: 8px; }
+    .name-box p { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; line-height: 1.6; }
+    .name-box input { width: 100%; background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 12px 16px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 15px; outline: none; margin-bottom: 16px; transition: border-color 0.2s; }
+    .name-box input:focus { border-color: var(--gold); }
+    .name-box button { width: 100%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 13px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; cursor: pointer; }
+    .name-err { color: var(--error); font-size: 12px; margin-top: 10px; display: none; }
+
+    nav { background: var(--dark2); border-bottom: 1px solid rgba(201,168,76,0.15); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
     .nav-brand { display: flex; align-items: center; gap: 12px; }
     .nav-brand span { font-size: 28px; }
     .nav-brand h1 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold); letter-spacing: 1px; line-height: 1.2; }
@@ -47,115 +37,42 @@
     .btn-logout { background: transparent; border: 1px solid rgba(201,168,76,0.3); border-radius: 6px; padding: 7px 14px; color: var(--gold); font-family: 'Raleway', sans-serif; font-size: 12px; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; }
     .btn-logout:hover { background: rgba(201,168,76,0.1); }
 
-    /* DEADLINE BANNER */
-    .deadline-banner {
-      background: rgba(224,160,48,0.1);
-      border-bottom: 1px solid rgba(224,160,48,0.2);
-      padding: 10px 24px;
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+    .deadline-banner { background: rgba(224,160,48,0.08); border-bottom: 1px solid rgba(224,160,48,0.15); padding: 10px 24px; display: flex; gap: 24px; flex-wrap: wrap; }
     .deadline-item { font-size: 12px; color: var(--warning); letter-spacing: 1px; }
     .deadline-item span { color: var(--text-muted); }
     .deadline-item.locked { color: var(--error); }
 
-    /* TABS */
     .tabs { display: flex; border-bottom: 1px solid rgba(201,168,76,0.15); background: var(--dark2); padding: 0 24px; }
     .tab { padding: 16px 24px; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
     .tab:hover { color: var(--gold-light); }
     .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
 
-    /* MAIN */
     main { max-width: 860px; margin: 0 auto; padding: 32px 20px; }
-
-    /* SECTION TITLE */
     .section-title { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold); margin-bottom: 6px; }
     .section-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
 
-    /* FORM CARD */
-    .form-card {
-      background: var(--dark2);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 14px;
-      padding: 32px;
-      margin-bottom: 32px;
-    }
+    .form-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; padding: 32px; margin-bottom: 32px; }
     .form-card h3 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold-light); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(201,168,76,0.1); }
-
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .form-grid.single { grid-template-columns: 1fr; }
     .full-width { grid-column: 1 / -1; }
-
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
-    .form-group input, .form-group select, .form-group textarea {
-      background: var(--dark3);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 8px;
-      padding: 11px 14px;
-      color: var(--text);
-      font-family: 'Raleway', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
-    }
+    .form-group input, .form-group select, .form-group textarea { background: var(--dark3); border: 1px solid rgba(201,168,76,0.15); border-radius: 8px; padding: 11px 14px; color: var(--text); font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.08); }
     .form-group select option { background: var(--dark3); }
     .form-group textarea { resize: vertical; min-height: 90px; }
 
-    /* FILE UPLOAD */
-    .file-upload-area {
-      border: 2px dashed rgba(201,168,76,0.2);
-      border-radius: 10px;
-      padding: 24px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--dark3);
-    }
+    .file-upload-area { border: 2px dashed rgba(201,168,76,0.2); border-radius: 10px; padding: 24px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--dark3); }
     .file-upload-area:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
     .file-upload-area p { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
     .file-upload-area .icon { font-size: 32px; }
     .file-upload-area input { display: none; }
     .file-preview { margin-top: 12px; max-width: 200px; border-radius: 8px; display: none; }
 
-    /* SUBMIT BTN */
-    .btn-submit {
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-      border: none;
-      border-radius: 8px;
-      padding: 13px 32px;
-      color: var(--dark);
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 8px;
-    }
+    .btn-submit { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 8px; padding: 13px 32px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: all 0.3s; margin-top: 8px; }
     .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.25); }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 8px;
-      padding: 13px 24px;
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 8px;
-      margin-left: 12px;
-    }
+    .btn-secondary { background: transparent; border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 13px 24px; color: var(--gold); font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; margin-top: 8px; margin-left: 12px; }
     .btn-secondary:hover { background: rgba(201,168,76,0.1); }
 
     .msg { margin-top: 16px; padding: 10px 14px; border-radius: 8px; font-size: 13px; display: none; }
@@ -163,19 +80,10 @@
     .msg.success { background: rgba(76,175,125,0.12); border: 1px solid rgba(76,175,125,0.3); color: var(--success); display: block; }
     .msg.warning { background: rgba(224,160,48,0.12); border: 1px solid rgba(224,160,48,0.3); color: var(--warning); display: block; }
 
-    /* LOCKED STATE */
-    .locked-overlay {
-      background: rgba(224,85,85,0.07);
-      border: 1px solid rgba(224,85,85,0.2);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .locked-overlay p { color: var(--error); font-size: 14px; }
+    .locked-overlay { background: rgba(224,85,85,0.07); border: 1px solid rgba(224,85,85,0.2); border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 20px; }
+    .locked-overlay p { color: var(--error); font-size: 14px; line-height: 1.6; }
     .locked-overlay span { font-size: 28px; display: block; margin-bottom: 8px; }
 
-    /* RECORDS TABLE */
     .records-card { background: var(--dark2); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; overflow: hidden; }
     .records-card h3 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold-light); padding: 20px 24px; border-bottom: 1px solid rgba(201,168,76,0.1); }
     .table-wrap { overflow-x: auto; }
@@ -194,8 +102,6 @@
     .btn-edit:disabled { opacity: 0.3; cursor: not-allowed; }
     .empty-state { text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
     .empty-state span { font-size: 36px; display: block; margin-bottom: 12px; }
-
-    /* TABS CONTENT */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
@@ -210,6 +116,17 @@
   </style>
 </head>
 <body>
+
+<div class="name-overlay" id="nameOverlay" style="display:none;">
+  <div class="name-box">
+    <span>♟️</span>
+    <h2>Welcome to King's Square!</h2>
+    <p>Please enter your full name to complete your profile. Your supervisor will see this name on all your records.</p>
+    <input type="text" id="nameInput" placeholder="Your full name e.g. Kasun Perera" maxlength="60" />
+    <button onclick="saveName()">Save & Continue →</button>
+    <div class="name-err" id="nameErr">Please enter your full name.</div>
+  </div>
+</div>
 
 <nav>
   <div class="nav-brand">
@@ -229,8 +146,8 @@
 </nav>
 
 <div class="deadline-banner">
-  <div class="deadline-item" id="attDeadline"><span>Attendance Deadline:</span> 31st of each month</div>
-  <div class="deadline-item" id="payDeadline"><span>Payment Deadline:</span> 20th of each month</div>
+  <div class="deadline-item" id="attDeadline">📋 <span>Attendance:</span> Loading...</div>
+  <div class="deadline-item" id="payDeadline">💰 <span>Payments Deadline:</span> 20th of each month</div>
 </div>
 
 <div class="tabs">
@@ -241,16 +158,13 @@
 
 <main>
 
-  <!-- ATTENDANCE TAB -->
   <div class="tab-content active" id="tab-attendance">
     <div class="section-title">Mark Attendance</div>
-    <div class="section-sub">Log your coaching session details below</div>
-
+    <div class="section-sub" id="attSubText">Log your coaching session details below</div>
     <div id="attLockedMsg" class="locked-overlay" style="display:none;">
       <span>🔒</span>
-      <p>Attendance submissions are locked after the 5th of each month.<br>Contact your supervisor if you need to make changes.</p>
+      <p>The deadline to submit last month's attendance has passed (after the 5th).<br>You can still submit attendance for the <strong>current month</strong>.</p>
     </div>
-
     <div class="form-card" id="attForm">
       <h3>Session Details</h3>
       <div class="form-grid">
@@ -262,9 +176,7 @@
           <label>Status</label>
           <select id="att_status">
             <option value="">-- Select --</option>
-            <option value="Present">Present</option>
-            <option value="Absent">Absent</option>
-            <option value="Late">Late</option>
+            <option>Present</option><option>Absent</option><option>Late</option>
           </select>
         </div>
         <div class="form-group">
@@ -283,11 +195,8 @@
           <label>Job Role</label>
           <select id="att_jobrole">
             <option value="">-- Select Role --</option>
-            <option value="Head Coach">Head Coach</option>
-            <option value="Assistant Coach">Assistant Coach</option>
-            <option value="Trainer">Trainer</option>
-            <option value="Supervisor">Supervisor</option>
-            <option value="Other">Other</option>
+            <option>Head Coach</option><option>Assistant Coach</option>
+            <option>Trainer</option><option>Supervisor</option><option>Other</option>
           </select>
         </div>
         <div class="form-group">
@@ -296,7 +205,7 @@
         </div>
         <div class="form-group">
           <label>Lesson / Topic Taught</label>
-          <input type="text" id="att_lesson" placeholder="e.g. Opening principles, Endgame tactics" />
+          <input type="text" id="att_lesson" placeholder="e.g. Opening principles" />
         </div>
         <div class="form-group full-width">
           <label>Special Notes</label>
@@ -311,16 +220,13 @@
     </div>
   </div>
 
-  <!-- PAYMENT TAB -->
   <div class="tab-content" id="tab-payment">
     <div class="section-title">Payment Details</div>
     <div class="section-sub">Record your payment information and upload receipt if available</div>
-
     <div id="payLockedMsg" class="locked-overlay" style="display:none;">
       <span>🔒</span>
       <p>Payment submissions are locked after the 20th of each month.<br>Contact your supervisor if you need to make changes.</p>
     </div>
-
     <div class="form-card" id="payForm">
       <h3>Payment Information</h3>
       <div class="form-grid">
@@ -332,19 +238,15 @@
           <label>Payment Method</label>
           <select id="pay_method">
             <option value="">-- Select --</option>
-            <option value="Cash">Cash</option>
-            <option value="Bank Transfer">Bank Transfer</option>
-            <option value="Cheque">Cheque</option>
-            <option value="Online Transfer">Online Transfer</option>
-            <option value="Other">Other</option>
+            <option>Cash</option><option>Bank Transfer</option>
+            <option>Cheque</option><option>Online Transfer</option><option>Other</option>
           </select>
         </div>
         <div class="form-group">
           <label>Payment Received By</label>
           <select id="pay_receivedby">
             <option value="">-- Select --</option>
-            <option value="Member Directly">Member Directly</option>
-            <option value="Academy">Academy</option>
+            <option>Member Directly</option><option>Academy</option>
           </select>
         </div>
         <div class="form-group">
@@ -391,54 +293,24 @@
     </div>
   </div>
 
-  <!-- HISTORY TAB -->
   <div class="tab-content" id="tab-history">
     <div class="section-title">My Submission History</div>
-    <div class="section-sub">View and edit your past attendance and payment records</div>
-
-    <div class="records-card" style="margin-bottom: 28px;">
+    <div class="section-sub">View and edit your past records</div>
+    <div class="records-card" style="margin-bottom:28px;">
       <h3>📋 Attendance Records</h3>
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Status</th>
-              <th>School</th>
-              <th>Arrival</th>
-              <th>Departure</th>
-              <th>Lesson</th>
-              <th>Students</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="attHistoryBody">
-            <tr><td colspan="8" class="empty-state"><span>📋</span>Loading records...</td></tr>
-          </tbody>
+          <thead><tr><th>Date</th><th>Status</th><th>School</th><th>Arrival</th><th>Departure</th><th>Lesson</th><th>Students</th><th>Action</th></tr></thead>
+          <tbody id="attHistoryBody"><tr><td colspan="8" class="empty-state">Loading...</td></tr></tbody>
         </table>
       </div>
     </div>
-
     <div class="records-card">
       <h3>💰 Payment Records</h3>
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>School</th>
-              <th>Month</th>
-              <th>Amount</th>
-              <th>Method</th>
-              <th>Received By</th>
-              <th>Pending</th>
-              <th>Receipt</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="payHistoryBody">
-            <tr><td colspan="9" class="empty-state"><span>💰</span>Loading records...</td></tr>
-          </tbody>
+          <thead><tr><th>Date</th><th>School</th><th>Month</th><th>Amount</th><th>Method</th><th>Received By</th><th>Pending</th><th>Receipt</th><th>Action</th></tr></thead>
+          <tbody id="payHistoryBody"><tr><td colspan="9" class="empty-state">Loading...</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -449,7 +321,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, getDocs, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, getDocs, setDoc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDAHdTrbNkmMh1kMPt_5ynOO90gLIyeE1M",
@@ -463,63 +335,90 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
-
   const CLOUDINARY_CLOUD = "dchnl8h14";
   const CLOUDINARY_PRESET = "kings_square_receipts";
 
-  let currentUser = null;
-  let currentUserData = null;
-  let editingAttId = null;
-  let editingPayId = null;
+  let currentUser = null, currentUserData = null;
+  let editingAttId = null, editingPayId = null;
 
-  // Deadline checks
   const today = new Date();
   const dayOfMonth = today.getDate();
-  const attLocked = dayOfMonth > 31;
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
+  const todayStr = today.toISOString().split('T')[0];
+
+  // Attendance deadline logic:
+  // Members can submit current month's attendance at any time
+  // They can also submit PREVIOUS month's attendance ONLY before the 5th of the new month
+  const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+  const prevYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+  const prevMonthLocked = dayOfMonth > 5; // previous month locked after 5th
+
+  // Min date: if before 5th allow previous month, else only current month
+  const attMinDate = prevMonthLocked
+    ? new Date(currentYear, currentMonth, 1)
+    : new Date(prevYear, prevMonth, 1);
+  const attMinStr = attMinDate.toISOString().split('T')[0];
+
   const payLocked = dayOfMonth > 20;
 
-  if (attLocked) {
+  // Set date input limits
+  document.getElementById('att_date').value = todayStr;
+  document.getElementById('att_date').min = attMinStr;
+  document.getElementById('att_date').max = todayStr;
+  document.getElementById('pay_date').value = todayStr;
+
+  // Update banners
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  if (!prevMonthLocked) {
+    document.getElementById('attDeadline').innerHTML = `📋 <span>Attendance Open For:</span> ${monthNames[prevMonth]} & ${monthNames[currentMonth]} (previous month closes on 5th)`;
+    document.getElementById('attLockedMsg').style.display = 'none';
+  } else {
+    document.getElementById('attDeadline').innerHTML = `📋 <span>Attendance Open For:</span> ${monthNames[currentMonth]} only`;
     document.getElementById('attLockedMsg').style.display = 'block';
-    document.getElementById('attForm').style.display = 'none';
-    document.getElementById('attDeadline').classList.add('locked');
   }
   if (payLocked) {
     document.getElementById('payLockedMsg').style.display = 'block';
     document.getElementById('payForm').style.display = 'none';
     document.getElementById('payDeadline').classList.add('locked');
+    document.getElementById('payDeadline').innerHTML = `🔒 <span>Payments:</span> Locked after 20th`;
   }
 
-  // Set today's date as default
-  const todayStr = today.toISOString().split('T')[0];
-  document.getElementById('att_date').value = todayStr;
-  document.getElementById('pay_date').value = todayStr;
-
-  // Auth check
   onAuthStateChanged(auth, async (user) => {
     if (!user) { window.location.href = 'index.html'; return; }
     currentUser = user;
-    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
       currentUserData = userDoc.data();
       if (currentUserData.role === 'admin') { window.location.href = 'admin.html'; return; }
-      document.getElementById('navName').textContent = currentUserData.name || 'Member';
-      document.getElementById('navEmail').textContent = user.email;
+      if (!currentUserData.name || !currentUserData.name.trim()) {
+        document.getElementById('nameOverlay').style.display = 'flex';
+      }
+      document.getElementById('navName').textContent = currentUserData.name || user.email.split('@')[0];
     } else {
+      document.getElementById('nameOverlay').style.display = 'flex';
       document.getElementById('navName').textContent = user.email.split('@')[0];
-      document.getElementById('navEmail').textContent = user.email;
     }
+    document.getElementById('navEmail').textContent = user.email;
     loadHistory();
   });
 
-  window.handleLogout = async () => {
-    await signOut(auth);
-    window.location.href = 'index.html';
+  window.saveName = async () => {
+    const name = document.getElementById('nameInput').value.trim();
+    const err = document.getElementById('nameErr');
+    if (!name) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    await setDoc(doc(db, "users", currentUser.uid), { name, email: currentUser.email, role: 'member', createdAt: serverTimestamp() }, { merge: true });
+    currentUserData = { ...currentUserData, name };
+    document.getElementById('navName').textContent = name;
+    document.getElementById('nameOverlay').style.display = 'none';
   };
 
+  window.handleLogout = async () => { await signOut(auth); window.location.href = 'index.html'; };
+
   window.switchTab = (tab) => {
-    document.querySelectorAll('.tab').forEach((t, i) => {
-      t.classList.toggle('active', ['attendance','payment','history'][i] === tab);
-    });
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ['attendance','payment','history'][i] === tab));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.add('active');
     if (tab === 'history') loadHistory();
@@ -527,37 +426,44 @@
 
   window.previewReceipt = (input) => {
     const file = input.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const img = document.getElementById('receiptPreview');
-        img.src = e.target.result;
-        img.style.display = 'block';
-        document.getElementById('fileLabel').textContent = file.name;
-      };
-      reader.readAsDataURL(file);
-    }
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.getElementById('receiptPreview');
+      img.src = e.target.result; img.style.display = 'block';
+      document.getElementById('fileLabel').textContent = file.name;
+    };
+    reader.readAsDataURL(file);
   };
 
   async function uploadReceipt() {
     const file = document.getElementById('receiptFile').files[0];
     if (!file) return null;
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_PRESET);
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: formData });
+    const fd = new FormData();
+    fd.append('file', file); fd.append('upload_preset', CLOUDINARY_PRESET);
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
     const data = await res.json();
     return data.secure_url || null;
   }
 
   window.submitAttendance = async () => {
-    if (attLocked && !editingAttId) return;
     const btn = document.getElementById('attSubmitBtn');
     const msg = document.getElementById('attMsg');
     msg.className = 'msg'; msg.textContent = '';
 
+    const selectedDate = document.getElementById('att_date').value;
+
+    // Validate date is within allowed range (only when adding new, not editing)
+    if (!editingAttId && selectedDate < attMinStr) {
+      msg.className = 'msg error';
+      msg.textContent = prevMonthLocked
+        ? `You can only submit attendance for ${monthNames[currentMonth]}. The deadline for ${monthNames[prevMonth]} has passed.`
+        : `You can only submit attendance from ${monthNames[prevMonth]} onwards.`;
+      return;
+    }
+
     const data = {
-      date: document.getElementById('att_date').value,
+      date: selectedDate,
       status: document.getElementById('att_status').value,
       arrival: document.getElementById('att_arrival').value,
       departure: document.getElementById('att_departure').value,
@@ -573,27 +479,23 @@
     }
 
     btn.disabled = true; btn.textContent = 'Submitting...';
-
     try {
       if (editingAttId) {
         await updateDoc(doc(db, "attendance", editingAttId), { ...data, updatedAt: serverTimestamp() });
-        msg.className = 'msg success'; msg.textContent = '✅ Attendance record updated successfully!';
+        msg.className = 'msg success'; msg.textContent = '✅ Attendance updated successfully!';
         editingAttId = null; btn.textContent = 'Submit Attendance';
       } else {
-        // Check duplicate
         const q = query(collection(db, "attendance"), where("uid", "==", currentUser.uid), where("date", "==", data.date), where("school", "==", data.school));
         const existing = await getDocs(q);
         if (!existing.empty) {
-          msg.className = 'msg warning'; msg.textContent = '⚠️ You already submitted attendance for this date and school. Go to History to edit it.';
+          msg.className = 'msg warning'; msg.textContent = '⚠️ You already submitted for this date and school. Go to History tab to edit it.';
           btn.disabled = false; btn.textContent = 'Submit Attendance'; return;
         }
         await addDoc(collection(db, "attendance"), { ...data, uid: currentUser.uid, memberName: currentUserData?.name || currentUser.email, memberEmail: currentUser.email, createdAt: serverTimestamp() });
         msg.className = 'msg success'; msg.textContent = '✅ Attendance submitted successfully!';
         clearAttForm();
       }
-    } catch (e) {
-      msg.className = 'msg error'; msg.textContent = 'Error submitting. Please try again.';
-    }
+    } catch (e) { msg.className = 'msg error'; msg.textContent = 'Error submitting. Please try again.'; }
     btn.disabled = false;
     if (!editingAttId) btn.textContent = 'Submit Attendance';
   };
@@ -603,7 +505,6 @@
     const btn = document.getElementById('paySubmitBtn');
     const msg = document.getElementById('payMsg');
     msg.className = 'msg'; msg.textContent = '';
-
     const data = {
       school: document.getElementById('pay_school').value,
       method: document.getElementById('pay_method').value,
@@ -614,131 +515,105 @@
       pending: document.getElementById('pay_pending').value || '0',
       notes: document.getElementById('pay_notes').value,
     };
-
     if (!data.school || !data.amount || !data.date || !data.month) {
-      msg.className = 'msg error'; msg.textContent = 'Please fill in School, Amount, Date and Month fields.'; return;
+      msg.className = 'msg error'; msg.textContent = 'Please fill in School, Amount, Date and Month.'; return;
     }
-
     btn.disabled = true; btn.textContent = 'Submitting...';
-
     try {
       let receiptUrl = null;
-      const fileInput = document.getElementById('receiptFile');
-      if (fileInput.files[0]) {
+      if (document.getElementById('receiptFile').files[0]) {
         btn.textContent = 'Uploading receipt...';
         receiptUrl = await uploadReceipt();
       }
-
       if (editingPayId) {
-        const updateData = { ...data, updatedAt: serverTimestamp() };
-        if (receiptUrl) updateData.receiptUrl = receiptUrl;
-        await updateDoc(doc(db, "payments", editingPayId), updateData);
-        msg.className = 'msg success'; msg.textContent = '✅ Payment record updated successfully!';
+        const upd = { ...data, updatedAt: serverTimestamp() };
+        if (receiptUrl) upd.receiptUrl = receiptUrl;
+        await updateDoc(doc(db, "payments", editingPayId), upd);
+        msg.className = 'msg success'; msg.textContent = '✅ Payment updated successfully!';
         editingPayId = null; btn.textContent = 'Submit Payment';
       } else {
         await addDoc(collection(db, "payments"), { ...data, receiptUrl, uid: currentUser.uid, memberName: currentUserData?.name || currentUser.email, memberEmail: currentUser.email, createdAt: serverTimestamp() });
         msg.className = 'msg success'; msg.textContent = '✅ Payment submitted successfully!';
         clearPayForm();
       }
-    } catch (e) {
-      msg.className = 'msg error'; msg.textContent = 'Error submitting. Please try again.';
-    }
+    } catch (e) { msg.className = 'msg error'; msg.textContent = 'Error submitting. Please try again.'; }
     btn.disabled = false;
     if (!editingPayId) btn.textContent = 'Submit Payment';
   };
 
   async function loadHistory() {
     if (!currentUser) return;
-
-    // Load attendance
     const attBody = document.getElementById('attHistoryBody');
     attBody.innerHTML = '<tr><td colspan="8" class="empty-state">Loading...</td></tr>';
-    const attQ = query(collection(db, "attendance"), where("uid", "==", currentUser.uid));
-    const attSnap = await getDocs(attQ);
+    const attSnap = await getDocs(query(collection(db, "attendance"), where("uid", "==", currentUser.uid)));
     if (attSnap.empty) {
       attBody.innerHTML = '<tr><td colspan="8" class="empty-state"><span>📋</span>No attendance records yet</td></tr>';
     } else {
-      const rows = [];
-      attSnap.forEach(d => rows.push({ id: d.id, ...d.data() }));
+      const rows = []; attSnap.forEach(d => rows.push({ id: d.id, ...d.data() }));
       rows.sort((a, b) => new Date(b.date) - new Date(a.date));
-      attBody.innerHTML = rows.map(r => `
-        <tr>
-          <td>${r.date || '-'}</td>
-          <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status || '-'}</span></td>
-          <td>${r.school || '-'}</td>
-          <td>${r.arrival || '-'}</td>
-          <td>${r.departure || '-'}</td>
-          <td>${r.lesson || '-'}</td>
-          <td>${r.students || '-'}</td>
-          <td><button class="btn-edit" onclick="editAtt('${r.id}')" ${attLocked ? 'disabled title="Locked after 5th"' : ''}>Edit</button></td>
-        </tr>`).join('');
+      attBody.innerHTML = rows.map(r => `<tr>
+        <td>${r.date||'-'}</td>
+        <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
+        <td>${r.school||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
+        <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td>
+        <td><button class="btn-edit" onclick="editAtt('${r.id}')">Edit</button></td>
+      </tr>`).join('');
     }
 
-    // Load payments
     const payBody = document.getElementById('payHistoryBody');
     payBody.innerHTML = '<tr><td colspan="9" class="empty-state">Loading...</td></tr>';
-    const payQ = query(collection(db, "payments"), where("uid", "==", currentUser.uid));
-    const paySnap = await getDocs(payQ);
+    const paySnap = await getDocs(query(collection(db, "payments"), where("uid", "==", currentUser.uid)));
     if (paySnap.empty) {
       payBody.innerHTML = '<tr><td colspan="9" class="empty-state"><span>💰</span>No payment records yet</td></tr>';
     } else {
-      const rows = [];
-      paySnap.forEach(d => rows.push({ id: d.id, ...d.data() }));
+      const rows = []; paySnap.forEach(d => rows.push({ id: d.id, ...d.data() }));
       rows.sort((a, b) => new Date(b.date) - new Date(a.date));
-      payBody.innerHTML = rows.map(r => `
-        <tr>
-          <td>${r.date || '-'}</td>
-          <td>${r.school || '-'}</td>
-          <td>${r.month || '-'}</td>
-          <td>LKR ${Number(r.amount||0).toLocaleString()}</td>
-          <td>${r.method || '-'}</td>
-          <td>${r.receivedby || '-'}</td>
-          <td>${Number(r.pending||0) > 0 ? `<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>` : '<span style="color:var(--success)">None</span>'}</td>
-          <td>${r.receiptUrl ? `<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View</a>` : '-'}</td>
-          <td><button class="btn-edit" onclick="editPay('${r.id}')" ${payLocked ? 'disabled title="Locked after 20th"' : ''}>Edit</button></td>
-        </tr>`).join('');
+      payBody.innerHTML = rows.map(r => `<tr>
+        <td>${r.date||'-'}</td><td>${r.school||'-'}</td><td>${r.month||'-'}</td>
+        <td>LKR ${Number(r.amount||0).toLocaleString()}</td><td>${r.method||'-'}</td>
+        <td>${r.receivedby||'-'}</td>
+        <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
+        <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View</a>`:'-'}</td>
+        <td><button class="btn-edit" onclick="editPay('${r.id}')" ${payLocked?'disabled title="Locked after 20th"':''}>Edit</button></td>
+      </tr>`).join('');
     }
   }
 
   window.editAtt = async (id) => {
     const d = await getDoc(doc(db, "attendance", id));
     if (!d.exists()) return;
-    const r = d.data();
-    editingAttId = id;
-    document.getElementById('att_date').value = r.date || '';
-    document.getElementById('att_status').value = r.status || '';
-    document.getElementById('att_arrival').value = r.arrival || '';
-    document.getElementById('att_departure').value = r.departure || '';
-    document.getElementById('att_school').value = r.school || '';
-    document.getElementById('att_jobrole').value = r.jobrole || '';
-    document.getElementById('att_students').value = r.students || '';
-    document.getElementById('att_lesson').value = r.lesson || '';
-    document.getElementById('att_notes').value = r.notes || '';
+    const r = d.data(); editingAttId = id;
+    document.getElementById('att_date').value = r.date||'';
+    document.getElementById('att_status').value = r.status||'';
+    document.getElementById('att_arrival').value = r.arrival||'';
+    document.getElementById('att_departure').value = r.departure||'';
+    document.getElementById('att_school').value = r.school||'';
+    document.getElementById('att_jobrole').value = r.jobrole||'';
+    document.getElementById('att_students').value = r.students||'';
+    document.getElementById('att_lesson').value = r.lesson||'';
+    document.getElementById('att_notes').value = r.notes||'';
     document.getElementById('attSubmitBtn').textContent = 'Update Attendance';
-    window.switchTab('attendance');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.switchTab('attendance'); window.scrollTo({top:0,behavior:'smooth'});
     const msg = document.getElementById('attMsg');
-    msg.className = 'msg warning'; msg.textContent = '✏️ Editing existing record. Make changes and click Update.';
+    msg.className = 'msg warning'; msg.textContent = '✏️ Editing existing record. Make your changes and click Update.';
   };
 
   window.editPay = async (id) => {
     const d = await getDoc(doc(db, "payments", id));
     if (!d.exists()) return;
-    const r = d.data();
-    editingPayId = id;
-    document.getElementById('pay_school').value = r.school || '';
-    document.getElementById('pay_method').value = r.method || '';
-    document.getElementById('pay_receivedby').value = r.receivedby || '';
-    document.getElementById('pay_amount').value = r.amount || '';
-    document.getElementById('pay_date').value = r.date || '';
-    document.getElementById('pay_month').value = r.month || '';
-    document.getElementById('pay_pending').value = r.pending || '0';
-    document.getElementById('pay_notes').value = r.notes || '';
+    const r = d.data(); editingPayId = id;
+    document.getElementById('pay_school').value = r.school||'';
+    document.getElementById('pay_method').value = r.method||'';
+    document.getElementById('pay_receivedby').value = r.receivedby||'';
+    document.getElementById('pay_amount').value = r.amount||'';
+    document.getElementById('pay_date').value = r.date||'';
+    document.getElementById('pay_month').value = r.month||'';
+    document.getElementById('pay_pending').value = r.pending||'0';
+    document.getElementById('pay_notes').value = r.notes||'';
     document.getElementById('paySubmitBtn').textContent = 'Update Payment';
-    window.switchTab('payment');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.switchTab('payment'); window.scrollTo({top:0,behavior:'smooth'});
     const msg = document.getElementById('payMsg');
-    msg.className = 'msg warning'; msg.textContent = '✏️ Editing existing record. Make changes and click Update.';
+    msg.className = 'msg warning'; msg.textContent = '✏️ Editing existing record. Make your changes and click Update.';
   };
 
   window.clearAttForm = () => {
