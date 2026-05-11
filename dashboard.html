@@ -118,6 +118,10 @@
     .btn-edit:disabled { opacity: 0.3; cursor: not-allowed; }
     .empty-state { text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
     .empty-state span { font-size: 36px; display: block; margin-bottom: 12px; }
+    .time-cell { font-size: 14px; font-weight: 600; color: var(--gold-light); letter-spacing: 0.5px; font-variant-numeric: tabular-nums; }
+    .btn-delete { background: transparent; border: 1px solid rgba(224,85,85,0.35); border-radius: 5px; padding: 4px 10px; color: var(--error); font-size: 11px; cursor: pointer; font-family: 'Raleway', sans-serif; transition: all 0.2s; margin-left: 5px; }
+    .btn-delete:hover { background: rgba(224,85,85,0.12); }
+    .btn-delete:disabled { opacity: 0.3; cursor: not-allowed; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
@@ -220,7 +224,7 @@
           <label>Status</label>
           <select id="att_status">
             <option value="">-- Select --</option>
-            <option>Present</option><option>Absent</option><option>Late</option>
+            <option>Present</option><option>Absent</option>
           </select>
         </div>
         <div class="form-group">
@@ -280,7 +284,7 @@
           <label>Status</label>
           <select id="prv_att_status">
             <option value="">-- Select --</option>
-            <option>Present</option><option>Absent</option><option>Late</option>
+            <option>Present</option><option>Absent</option>
           </select>
         </div>
         <div class="form-group">
@@ -544,7 +548,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, getDocs, setDoc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, getDoc, getDocs, setDoc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDAHdTrbNkmMh1kMPt_5ynOO90gLIyeE1M",
@@ -908,13 +912,22 @@
     const attBody = document.getElementById('attHistoryBody');
     attBody.innerHTML = attRows.length === 0
       ? '<tr><td colspan="9" class="empty-state"><span>📋</span>No records yet</td></tr>'
-      : attRows.map(r => `<tr>
-          <td>${r.date||'-'}</td>
-          <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-          <td>${r.school||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
-          <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
-          <td><button class="btn-edit" onclick="editRecord('${r.id}','att','school')">Edit</button></td>
-        </tr>`).join('');
+      : attRows.map(r => {
+          const rowDate = r.date || '';
+          const attEditable = rowDate >= attMinStr;
+          return `<tr>
+            <td>${rowDate||'-'}</td>
+            <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
+            <td>${r.school||'-'}</td>
+            <td><span class="time-cell">${r.arrival||'-'}</span></td>
+            <td><span class="time-cell">${r.departure||'-'}</span></td>
+            <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
+            <td>
+              <button class="btn-edit" onclick="editRecord('${r.id}','att','school')" ${!attEditable?'disabled title="Locked — past deadline"':''}>Edit</button>
+              <button class="btn-delete" onclick="deleteRecord('${r.id}','att')" ${!attEditable?'disabled title="Locked — past deadline"':''}>Delete</button>
+            </td>
+          </tr>`;
+        }).join('');
 
     // Private Attendance
     const prvAttSnap = await getDocs(query(collection(db, "attendance"), where("uid", "==", currentUser.uid), where("sessionType", "==", "private")));
@@ -923,13 +936,22 @@
     const prvAttBody = document.getElementById('prvAttHistoryBody');
     prvAttBody.innerHTML = prvAttRows.length === 0
       ? '<tr><td colspan="9" class="empty-state"><span>🏠</span>No private class records yet</td></tr>'
-      : prvAttRows.map(r => `<tr>
-          <td>${r.date||'-'}</td>
-          <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-          <td>${r.location||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
-          <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
-          <td><button class="btn-edit" onclick="editRecord('${r.id}','att','private')">Edit</button></td>
-        </tr>`).join('');
+      : prvAttRows.map(r => {
+          const rowDate = r.date || '';
+          const attEditable = rowDate >= attMinStr;
+          return `<tr>
+            <td>${rowDate||'-'}</td>
+            <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
+            <td>${r.location||'-'}</td>
+            <td><span class="time-cell">${r.arrival||'-'}</span></td>
+            <td><span class="time-cell">${r.departure||'-'}</span></td>
+            <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
+            <td>
+              <button class="btn-edit" onclick="editRecord('${r.id}','att','private')" ${!attEditable?'disabled title="Locked — past deadline"':''}>Edit</button>
+              <button class="btn-delete" onclick="deleteRecord('${r.id}','att')" ${!attEditable?'disabled title="Locked — past deadline"':''}>Delete</button>
+            </td>
+          </tr>`;
+        }).join('');
 
     // School Payments
     const paySnap = await getDocs(query(collection(db, "payments"), where("uid", "==", currentUser.uid), where("sessionType", "==", "school")));
@@ -944,7 +966,10 @@
           <td>${r.receivedby||'-'}</td>
           <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
           <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
-          <td><button class="btn-edit" onclick="editRecord('${r.id}','pay','school')" ${payLocked?'disabled title="Locked after 25th"':''}>Edit</button></td>
+          <td>
+            <button class="btn-edit" onclick="editRecord('${r.id}','pay','school')" ${payLocked?'disabled title="Locked after 25th"':''}>Edit</button>
+            <button class="btn-delete" onclick="deleteRecord('${r.id}','pay')" ${payLocked?'disabled title="Locked after 25th"':''}>Delete</button>
+          </td>
         </tr>`).join('');
 
     // Private Payments
@@ -960,9 +985,25 @@
           <td>${r.receivedby||'-'}</td>
           <td>${Number(r.pending||0)>0?`<span style="color:var(--error)">LKR ${Number(r.pending).toLocaleString()}</span>`:'<span style="color:var(--success)">None</span>'}</td>
           <td>${r.receiptUrl?`<a href="${r.receiptUrl}" target="_blank" style="color:var(--gold)">View 📎</a>`:'-'}</td>
-          <td><button class="btn-edit" onclick="editRecord('${r.id}','pay','private')" ${payLocked?'disabled title="Locked after 25th"':''}>Edit</button></td>
+          <td>
+            <button class="btn-edit" onclick="editRecord('${r.id}','pay','private')" ${payLocked?'disabled title="Locked after 25th"':''}>Edit</button>
+            <button class="btn-delete" onclick="deleteRecord('${r.id}','pay')" ${payLocked?'disabled title="Locked after 25th"':''}>Delete</button>
+          </td>
         </tr>`).join('');
   }
+
+  // DELETE RECORD
+  window.deleteRecord = async (id, recordType) => {
+    const collectionName = recordType === 'att' ? 'attendance' : 'payments';
+    const confirmed = window.confirm('Are you sure you want to delete this record? This cannot be undone.');
+    if (!confirmed) return;
+    try {
+      await deleteDoc(doc(db, collectionName, id));
+      loadHistory();
+    } catch (e) {
+      alert('Error deleting record. Please try again.');
+    }
+  };
 
   // EDIT RECORD
   window.editRecord = async (id, recordType, sessionType) => {
