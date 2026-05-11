@@ -166,6 +166,44 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* ARRIVAL / DEPARTURE TIME CELLS */
+    .time-cell {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--gold-light);
+      background: rgba(201,168,76,0.07);
+      border-radius: 5px;
+      padding: 2px 7px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .time-cell.empty { background: transparent; color: var(--text-muted); font-family: 'Raleway', sans-serif; font-weight: 400; letter-spacing: 0; }
+
+    /* ADMIN DETAILS PANEL */
+    .admin-panel-header { display: flex; align-items: center; gap: 18px; background: var(--dark2); border: 1px solid rgba(201,168,76,0.18); border-radius: 16px; padding: 28px 32px; margin-bottom: 28px; }
+    .admin-avatar-lg { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #7a1a7a, #c040c0); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 32px; color: #fff; font-weight: 700; box-shadow: 0 0 0 4px rgba(192,64,192,0.2); flex-shrink: 0; }
+    .admin-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35); border-radius: 20px; padding: 3px 14px; font-size: 11px; color: var(--gold-light); letter-spacing: 2px; margin-top: 6px; text-transform: uppercase; }
+    .download-section { background: var(--dark2); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; padding: 28px 32px; margin-bottom: 24px; }
+    .download-section h3 { font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold-light); margin-bottom: 6px; }
+    .download-section p { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.7; }
+    .download-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .dl-info-card { background: var(--dark3); border: 1px solid rgba(201,168,76,0.1); border-radius: 12px; padding: 20px; }
+    .dl-info-card h4 { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold); margin-bottom: 8px; }
+    .dl-info-card ul { font-size: 12px; color: var(--text-muted); line-height: 1.8; padding-left: 16px; margin-bottom: 14px; }
+    .dl-info-card ul li { list-style: disc; }
+    .btn-download-xl { width: 100%; background: linear-gradient(135deg, #1a5a1a, #2e9e2e); border: none; border-radius: 8px; padding: 12px; color: #fff; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-download-xl:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-download-xl:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-download-xl-all { width: 100%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border: none; border-radius: 10px; padding: 14px; color: var(--dark); font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; }
+    .btn-download-xl-all:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-download-xl-all:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .dl-status-msg { margin-top: 14px; padding: 10px 16px; border-radius: 8px; font-size: 13px; display: none; }
+    .dl-status-msg.success { background: rgba(76,175,125,0.12); border: 1px solid rgba(76,175,125,0.3); color: var(--success); display: block; }
+    .dl-status-msg.error   { background: rgba(224,85,85,0.12);  border: 1px solid rgba(224,85,85,0.3);  color: var(--error);   display: block; }
+    .admin-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+
     @media (max-width: 900px) { .modal-stats { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 700px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -339,6 +377,7 @@
   <div class="tab"        onclick="switchTab('attendance')">📋 All Attendance</div>
   <div class="tab"        onclick="switchTab('payments')"  >💰 All Payments</div>
   <div class="tab"        onclick="switchTab('members')"   >👥 Members</div>
+  <div class="tab"        onclick="switchTab('admin-details')">🔐 Admin Details</div>
 </div>
 
 <main>
@@ -378,7 +417,7 @@
       <input type="date" id="attFilterDate" />
       <select id="attFilterStatus">
         <option value="">All Status</option>
-        <option>Present</option><option>Absent</option>
+        <option>Present</option><option>Absent</option><option>Late</option>
       </select>
       <select id="attFilterType">
         <option value="">All Types</option>
@@ -453,6 +492,74 @@
     <div class="section-title" style="margin-bottom:16px;">Current Members <span id="memberCountLabel" style="font-size:13px;color:var(--text-muted);font-family:'Raleway',sans-serif;font-weight:400;"></span></div>
     <div class="member-grid" id="memberGrid">
       <div style="color:var(--text-muted);font-size:14px;padding:20px;">Loading members...</div>
+    </div>
+  </div>
+
+  <!-- ADMIN DETAILS -->
+  <div class="tab-content" id="tab-admin-details">
+    <div class="section-title">Admin Details</div>
+    <div class="section-sub">Your account information and quick-access data exports</div>
+
+    <!-- Admin Profile Card -->
+    <div class="admin-panel-header">
+      <div class="admin-avatar-lg" id="adminAvatarLg">A</div>
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:20px;color:var(--gold);" id="adminDisplayName">Administrator</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:4px;" id="adminDisplayEmail">—</div>
+        <div class="admin-badge">♔ ACADEMY ADMIN</div>
+      </div>
+    </div>
+
+    <!-- Academy Stats Row -->
+    <div class="admin-stats-row">
+      <div class="stat-card"><div class="num" id="adStatMembers">-</div><div class="label">Total Members</div></div>
+      <div class="stat-card"><div class="num" id="adStatAtt">-</div><div class="label">Total Sessions Logged</div></div>
+      <div class="stat-card"><div class="num" id="adStatPay" style="color:var(--success)">-</div><div class="label">Total Payments Collected</div></div>
+    </div>
+
+    <!-- Download Section -->
+    <div class="download-section">
+      <h3>📥 Export All Data to Excel</h3>
+      <p>Download a single Excel workbook containing all member attendance and payment records across the entire academy. Each category is on its own clearly labelled sheet for easy reference.</p>
+
+      <div class="download-cards">
+        <div class="dl-info-card">
+          <h4>📋 Attendance Sheet</h4>
+          <ul>
+            <li>Date</li>
+            <li>Member Name</li>
+            <li>Type of Class (School / Private)</li>
+            <li>School / Location</li>
+            <li>Status (Present / Absent / Late)</li>
+            <li>Job Role</li>
+            <li>Arrival Time</li>
+            <li>Departure Time</li>
+            <li>Lesson</li>
+            <li>Students</li>
+            <li>Notes</li>
+          </ul>
+        </div>
+        <div class="dl-info-card">
+          <h4>💰 Payments Sheet</h4>
+          <ul>
+            <li>Date</li>
+            <li>Member Name</li>
+            <li>Type of Class (School / Private)</li>
+            <li>School / Location</li>
+            <li>Month</li>
+            <li>Amount (LKR)</li>
+            <li>Payment Method</li>
+            <li>Received By</li>
+            <li>Pending (LKR)</li>
+            <li>Notes</li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="btn-download-xl-all" id="btnDownloadAll" onclick="downloadAllDataExcel()">
+        ⬇️ Download Full Academy Report (.xlsx)
+      </button>
+      <div class="dl-status-msg" id="dlStatusMsg"></div>
     </div>
   </div>
 
@@ -543,23 +650,27 @@
   })();
 
   // ─── AUTH ─────────────────────────────────────
+  let currentAdminUser = null;
+
   onAuthStateChanged(auth, async (user) => {
     if (!user) { window.location.href = 'index.html'; return; }
     if (user.email !== ADMIN_EMAIL) { window.location.href = 'dashboard.html'; return; }
     const ud = await getDoc(doc(db, "users", user.uid));
     if (!ud.exists() || ud.data().role !== 'admin') { window.location.href = 'dashboard.html'; return; }
+    currentAdminUser = { uid: user.uid, email: user.email, ...ud.data() };
     loadOverview(); loadMembers();
   });
   window.handleLogout = async () => { await signOut(auth); window.location.href = 'index.html'; };
 
   // ─── TAB SWITCHING ────────────────────────────
   window.switchTab = (tab) => {
-    const tabs = ['overview','attendance','payments','members'];
+    const tabs = ['overview','attendance','payments','members','admin-details'];
     document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', tabs[i] === tab));
     document.querySelectorAll('main > .tab-content').forEach(c => c.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.add('active');
     if (tab === 'attendance') loadAllAttendance();
     if (tab === 'payments')   loadAllPayments();
+    if (tab === 'admin-details') loadAdminDetails();
   };
 
   // ─── HELPERS ──────────────────────────────────
@@ -629,7 +740,7 @@
       <td>${typeBadge(r.sessionType)}</td>
       <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
       <td>${locLabel(r)}</td>
-      <td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
+      <td><span class="${r.arrival ? 'time-cell' : 'time-cell empty'}">${r.arrival||'-'}</span></td><td><span class="${r.departure ? 'time-cell' : 'time-cell empty'}">${r.departure||'-'}</span></td>
       <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
       <td style="max-width:110px;font-size:12px;color:var(--text-muted)">${r.notes||'-'}</td>
       <td><button class="btn-del-row" onclick="deleteAttRow('${r.id}','${esc(r.memberName||r.memberEmail)}','${r.date||''}','${esc(locLabel(r))}')">🗑️ Delete</button></td>
@@ -784,7 +895,7 @@
       : schoolAtt.map(r=>`<tr>
           <td>${r.date||'-'}</td>
           <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-          <td>${r.school||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
+          <td>${r.school||'-'}</td><td><span class="${r.arrival ? 'time-cell' : 'time-cell empty'}">${r.arrival||'-'}</span></td><td><span class="${r.departure ? 'time-cell' : 'time-cell empty'}">${r.departure||'-'}</span></td>
           <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
           <td style="max-width:100px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
           <td><button class="btn-del-row" onclick="deleteAttRow('${r.id}','${mn}','${r.date||''}','${esc(r.school||'')}')">🗑️ Delete</button></td>
@@ -796,7 +907,7 @@
       : prvAtt.map(r=>`<tr>
           <td>${r.date||'-'}</td>
           <td><span class="badge ${(r.status||'').toLowerCase()}">${r.status||'-'}</span></td>
-          <td>${r.location||'-'}</td><td>${r.arrival||'-'}</td><td>${r.departure||'-'}</td>
+          <td>${r.location||'-'}</td><td><span class="${r.arrival ? 'time-cell' : 'time-cell empty'}">${r.arrival||'-'}</span></td><td><span class="${r.departure ? 'time-cell' : 'time-cell empty'}">${r.departure||'-'}</span></td>
           <td>${r.lesson||'-'}</td><td>${r.students||'-'}</td><td>${r.jobrole||'-'}</td>
           <td style="max-width:100px;font-size:11px;color:var(--text-muted)">${r.notes||'-'}</td>
           <td><button class="btn-del-row" onclick="deleteAttRow('${r.id}','${mn}','${r.date||''}','${esc(r.location||'')}')">🗑️ Delete</button></td>
@@ -903,6 +1014,117 @@
         : 'Error: '+e.message;
     }
     btn.disabled=false; btn.textContent='Add Member';
+  };
+
+  // ─── ADMIN DETAILS PANEL ─────────────────────
+  async function loadAdminDetails() {
+    if (currentAdminUser) {
+      const name  = currentAdminUser.name || 'Administrator';
+      const email = currentAdminUser.email || ADMIN_EMAIL;
+      document.getElementById('adminDisplayName').textContent  = name;
+      document.getElementById('adminDisplayEmail').textContent = email;
+      document.getElementById('adminAvatarLg').textContent     = name[0].toUpperCase();
+    }
+    const [memSnap, attSnap, paySnap] = await Promise.all([
+      getDocs(collection(db, 'users')),
+      getDocs(collection(db, 'attendance')),
+      getDocs(collection(db, 'payments'))
+    ]);
+    let mc = 0; memSnap.forEach(d => { if (d.data().role !== 'admin') mc++; });
+    let totalPay = 0; paySnap.forEach(d => { totalPay += Number(d.data().amount||0); });
+    document.getElementById('adStatMembers').textContent = mc;
+    document.getElementById('adStatAtt').textContent     = attSnap.size;
+    document.getElementById('adStatPay').textContent     = 'LKR ' + totalPay.toLocaleString();
+  }
+
+  // ─── EXCEL DOWNLOAD ───────────────────────────
+  window.downloadAllDataExcel = async () => {
+    const btn = document.getElementById('btnDownloadAll');
+    const msg = document.getElementById('dlStatusMsg');
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Fetching data...';
+    msg.className = 'dl-status-msg';
+
+    try {
+      const [attSnap, paySnap] = await Promise.all([
+        getDocs(collection(db, 'attendance')),
+        getDocs(collection(db, 'payments'))
+      ]);
+
+      const attRows = [];
+      attSnap.forEach(d => attRows.push({ id: d.id, ...d.data() }));
+      attRows.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      const payRows = [];
+      paySnap.forEach(d => payRows.push({ id: d.id, ...d.data() }));
+      payRows.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // Build CSV strings
+      const attHeader = ['Date','Member Name','Type of Class','School / Location','Status','Job Role','Arrival Time','Departure Time','Lesson','No. of Students','Notes'];
+      const attData = attRows.map(r => [
+        r.date || '',
+        r.memberName || r.memberEmail || '',
+        r.sessionType === 'private' ? 'Private' : 'School',
+        r.sessionType === 'private' ? (r.location || '') : (r.school || ''),
+        r.status || '',
+        r.jobrole || '',
+        r.arrival || '',
+        r.departure || '',
+        r.lesson || '',
+        r.students || '',
+        r.notes || ''
+      ]);
+
+      const payHeader = ['Date','Member Name','Type of Class','School / Location','Month','Amount (LKR)','Payment Method','Received By','Pending (LKR)','Notes'];
+      const payData = payRows.map(r => [
+        r.date || '',
+        r.memberName || r.memberEmail || '',
+        r.sessionType === 'private' ? 'Private' : 'School',
+        r.sessionType === 'private' ? (r.location || '') : (r.school || ''),
+        r.month || '',
+        Number(r.amount || 0),
+        r.method || '',
+        r.receivedby || '',
+        Number(r.pending || 0),
+        r.notes || ''
+      ]);
+
+      // Build workbook using SheetJS-style CSV with a multi-sheet trick via a blob
+      // We'll generate a proper .xlsx using the xlsx library loaded from CDN
+      const XLSX = await import('https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs');
+
+      const wb = XLSX.utils.book_new();
+
+      // --- Attendance Sheet ---
+      const wsAtt = XLSX.utils.aoa_to_sheet([attHeader, ...attData]);
+      // Style header row widths
+      wsAtt['!cols'] = [
+        {wch:12},{wch:22},{wch:16},{wch:24},{wch:10},{wch:16},{wch:13},{wch:15},{wch:20},{wch:14},{wch:30}
+      ];
+      XLSX.utils.book_append_sheet(wb, wsAtt, 'Attendance');
+
+      // --- Payments Sheet ---
+      const wsPay = XLSX.utils.aoa_to_sheet([payHeader, ...payData]);
+      wsPay['!cols'] = [
+        {wch:12},{wch:22},{wch:16},{wch:24},{wch:12},{wch:14},{wch:16},{wch:18},{wch:14},{wch:30}
+      ];
+      XLSX.utils.book_append_sheet(wb, wsPay, 'Payments');
+
+      // Generate and download
+      const today = new Date();
+      const dateStr = today.toISOString().slice(0, 10);
+      XLSX.writeFile(wb, `KingsSquare_Academy_Report_${dateStr}.xlsx`);
+
+      msg.className = 'dl-status-msg success';
+      msg.textContent = `✅ Downloaded successfully! ${attRows.length} attendance records & ${payRows.length} payment records exported.`;
+    } catch(e) {
+      console.error(e);
+      msg.className = 'dl-status-msg error';
+      msg.textContent = '❌ Export failed: ' + e.message;
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '⬇️ Download Full Academy Report (.xlsx)';
   };
 
   // Backdrop clicks
